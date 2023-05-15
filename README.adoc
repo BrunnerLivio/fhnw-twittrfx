@@ -1,0 +1,95 @@
+== oopI2 Programmierprojekt
+
+=== Bearbeitet von
+
+* Vorname Nachname
+
+=== Umgesetzte Zusatz-Features
+
+Folgende Zusatzfeatures mit der angegebenen Bewertung wurden umgesetzt:
+
+* Zusatzfeature Beispiel, +0.25
+* ...
+
+=== TwittrFX
+
+Implementieren Sie eine Applikation auf Basis JavaFX gemäss der Aufgabenbeschreibung auf Teams im Ordner "10 - Programmierprojekt".
+
+* Benutzen Sie zur Umsetzung die vorgegebene Struktur vom "Application-Template".
+* FXML und SceneBuilder dürfen nur unter Absprache verwendet werden.
+
+=== Abgabe
+
+* Mittwoch, 14.06.2023, 23:42 Uhr
+* Die Abgabe erfolgt durch einen "Push" auf den Master-Branch in Ihrem GitHub-Repository.
+* Das Projekt muss aus der IDE heraus startbar sein.
+
+=== Bitte beachten Sie:
+
+* Wie in der Aufgabenbeschreibung bereits festgelegt müssen für eine 4.0 folgende Basis-Features implementiert sein:
+  ** Einlesen der Daten von File
+  ** Abspeichern der Änderungen
+  ** Darstellen aller Vogelarten in Tabelle / Liste
+  ** Editor-Bereich
+    *** Editor-Bereich arbeitet stets auf dem in der Tabelle selektierten Vogelart
+    *** Änderungen führen zu unmittelbarem Update der Tabelle und den Überschriften
+  ** Header-Bereich
+    *** mit Name und Kontinente
+    *** einfaches Styling via CSS
+  ** Gesamt-Übersicht
+    *** mit Anzahl Vogelarten und höchster Geschwindigkeit aller Vogelarten
+  ** Layout mit SplitPane
+    *** sinnvolles Resizing-Verhalten
+  ** Anlegen eines neuen Vogels
+  ** Löschen bestehender Einträge
+  ** Programmstruktur: Aufteilung in 2 Layer für Model und View
+* Das Programmierprojekt ist eine Einzelarbeit.
+* Nicht kompilierbarer Code wird mit einer 1.0 gewertet.
+* Keine selbstständige Bearbeitung / Plagiate führen zu einem deutlichen Notenabzug
+   ** Sollten Ihnen jemand geholfen haben, schreiben Sie einen Kommentar im Code in dem Sie darauf hinweisen und den Namen dieser Person angeben.
+   ** Sollten Sie etwas aus dem Internet verwendet haben, geben Sie mit einem Kommentar im Code die Quelle an.
+   ** In jedem Fall dürfen Sie nur Code verwenden, den Sie auch verstehen.
+* Unit-Tests sind nicht Pflicht, erleichtern Ihnen aber die Arbeit, da Sie so nicht ständig die Applikation neu starten müssen und nicht immer wieder auf Bugs testen müssen, die mal aufgetreten sind und werden deshalb empfohlen.
+
+=== Bei Problemen mit dem IntelliJ-Setup
+
+Es kommt immer wieder mal vor, dass der Setup des IntelliJ-Projekts nicht auf Anhieb funktioniert oder "plötzlich"
+nicht mehr funktioniert.
+
+Sie brauchen in so einem Fall NICHT nochmal den Invitation-Link annehmen oder das Projekt via “Project from Version Control” oder "git clone …" nochmal anlegen.
+
+**WICHTIG: **Sollten Sie noch Code geschrieben haben seitdem Sie das letzte Mal einen Commit gemacht haben, machen Sie einen Commit und einen Push bevor Sie die folgenden Schritte befolgen.
+
+Versuchen Sie stattdessen die folgenden Dinge, in der genannten Reihenfolge und prüfen nach jedem Schritt, ob es wieder funktioniert:
+
+1. Gehen Sie auf "File -&gt; Project Structure..." und stellen Sie sicher, dass im neuen Fenster im Reiter "Project" unter "SDK" das Azul JDK 19 mit JavaFX ausgewählt ist
+
+2. Gehen Sie auf "Build -&gt; Rebuild Project"
+
+3. Sollten Sie im IntelliJ links bei den Dateien als Symbol der Datei `pom.xml` **KEIN** blaues "m" haben
+  - Machen Sie einen Rechtsklick auf die Datei `pom.xml` und klicken Sie dann auf "Add as Maven Project" (ziemlich weit unten)
+  - Sollten Sie gefragt werden, klicken Sie auf "Trust Project"
+
+4. Gehen Sie auf "View -&gt; Tool Windows -&gt; Maven", im neu geöffneten "Maven" Fenster:
+  - Warten Sie jeweils zwischen den Klicks auf die Buttons bis IntelliJ mit dem jeweiligen Prozess fertig ist
+  - Klicken Sie oben unterhalb von "Maven" zuerst auf den ersten Button "Reload All Maven Projects"
+  - Dann auf den Button daneben "Generate Sources ..."
+  - Dann auf den Button daneben "Download Sources..." und dann auf "Download Sources and Documentation"
+
+5. Gehen Sie auf "File -&gt; Invalidate Caches...", im neu geöffneten Dialog:
+  - Ein Häkchen hinzufügen bei "Clear file system cache..."
+  - Dann auf "Invalidate and Restart" klicken
+
+6. Projekt im IntelliJ schliessen
+  - Pfad des Projekts im Finder / Explorer öffnen
+  - Das Verzeichnis `.idea` löschen (es könnte je nach dem notwendig sein, versteckte Ordner anzeigen zu lassen)
+  - Im IntelliJ auf "File -&gt; Open" gehen, Pfad des Ordners vom Projekt auswählen und öffnen
+  - Falls gefragt "Trust Project" anklicken
+  - Sollte dies nicht helfen, versuchen Sie Schritte 1-3 erneut, und falls das auch nicht hilft, gehen Sie zu Schritt 7
+
+7. Projekt im IntelliJ schliessen
+  - Ordner vom Projekt im Finder / Explorer löschen
+  - Gehen Sie auf "File -&gt; New -&gt; Project from Version Control"
+  - Gehen Sie nun weiter vor, wie wenn Sie ein Projekt zum ersten Mal von GitHub neu anlegen.
+
+Jetzt sollte der Projekt-Setup korrekt und `AppStarter` als auch `PresentationModelTest` startbar sein.
