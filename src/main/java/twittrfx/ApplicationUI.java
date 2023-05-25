@@ -1,13 +1,20 @@
 package twittrfx;
 
+import javafx.geometry.Insets;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import twittrfx.bird.bird_list.BirdList;
 import twittrfx.bird.bird_list.BirdListPM;
+import twittrfx.bird.bird_view.BirdView;
+import twittrfx.bird.bird_view.BirdViewPM;
+import twittrfx.toolbar.Toolbar;
+import twittrfx.toolbar.ToolbarPM;
 
-public class ApplicationUI extends StackPane implements ViewMixin {
+public class ApplicationUI extends VBox implements ViewMixin {
 
   private final PresentationModel model;
-  private BirdList birdList;
+  private Toolbar toolbar;
+  private BirdView birdView;
 
   public ApplicationUI(PresentationModel model) {
     this.model = model;
@@ -21,11 +28,12 @@ public class ApplicationUI extends StackPane implements ViewMixin {
 
   @Override
   public void initializeControls() {
-    birdList = new BirdList(new BirdListPM());
+    toolbar = new Toolbar(new ToolbarPM());
+    birdView = new BirdView(new BirdViewPM());
   }
 
   @Override
   public void layoutControls() {
-    getChildren().add(birdList);
+    getChildren().addAll(toolbar, birdView);
   }
 }

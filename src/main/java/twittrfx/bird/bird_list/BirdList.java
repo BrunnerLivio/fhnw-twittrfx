@@ -1,18 +1,19 @@
 package twittrfx.bird.bird_list;
 
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import twittrfx.ViewMixin;
 import twittrfx.bird.BirdPM;
 
 public class BirdList extends VBox implements ViewMixin {
   private final BirdListPM model;
   private TableView<BirdPM> table;
+  private Text title;
 
   public BirdList(BirdListPM model) {
     this.model = model;
@@ -38,14 +39,16 @@ public class BirdList extends VBox implements ViewMixin {
   @Override
   public void initializeControls() {
     table = this.initializeTable();
+    title = new Text("Birds of Switzerland");
   }
 
   @Override
   public void layoutControls() {
     setPadding(new Insets(10));
     setVgrow(table, Priority.ALWAYS);
+    title.getStyleClass().add("title");
 
-    getChildren().addAll(table);
+    getChildren().addAll(title, table);
   }
 
   @Override

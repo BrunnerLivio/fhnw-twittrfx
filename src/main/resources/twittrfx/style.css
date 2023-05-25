@@ -1,5 +1,9 @@
 .root {
-    -fx-padding:     10;
-    -fx-pref-height: 300;
-    -fx-pref-width:  400;
+  -fx-pref-height: 300;
+  -fx-pref-width: 400;
+}
+
+.title {
+  -fx-font-size: 24;
+  -fx-font-weight: bold;
 }
