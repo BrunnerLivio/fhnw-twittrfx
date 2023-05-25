@@ -1,44 +1,31 @@
 package twittrfx;
 
-import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import twittrfx.bird.bird_list.BirdList;
+import twittrfx.bird.bird_list.BirdListPM;
 
-public class ApplicationUI extends StackPane {
+public class ApplicationUI extends StackPane implements ViewMixin {
 
-    private final PresentationModel model;
+  private final PresentationModel model;
+  private BirdList birdList;
 
-    private Button button;
+  public ApplicationUI(PresentationModel model) {
+    this.model = model;
+    init();
+  }
 
-    public ApplicationUI(PresentationModel model) {
-        this.model = model;
-        initializeSelf();
-        initializeControls();
-        layoutControls();
-        setupEventHandlers();
-        setupValueChangedListeners();
-        setupBindings();
-    }
+  @Override
+  public void initializeSelf() {
+    addStylesheetFiles("style.css");
+  }
 
-    private void initializeSelf() {
-        String stylesheet = getClass().getResource("style.css").toExternalForm();
-        getStylesheets().add(stylesheet);
-    }
+  @Override
+  public void initializeControls() {
+    birdList = new BirdList(new BirdListPM());
+  }
 
-    private void initializeControls() {
-        button = new Button();
-    }
-
-    private void layoutControls() {
-        getChildren().addAll(button);
-    }
-
-    private void setupEventHandlers() {
-    }
-
-    private void setupValueChangedListeners() {
-    }
-
-    private void setupBindings() {
-        button.textProperty().bind(model.greetingProperty());
-    }
+  @Override
+  public void layoutControls() {
+    getChildren().add(birdList);
+  }
 }

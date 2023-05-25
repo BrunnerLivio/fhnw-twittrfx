@@ -1,6 +1,8 @@
 package twittrfx.bird;
 
+import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -10,7 +12,7 @@ public class BirdPM {
   private final StringProperty image = new SimpleStringProperty();
   private final StringProperty shortDescription = new SimpleStringProperty();
   private final StringProperty populationSize = new SimpleStringProperty();
-  private final IntegerProperty maximumLifeSpanInYears = new SimpleIntegerProperty();
+  private final FloatProperty maximumLifeSpanInYears = new SimpleFloatProperty();
   private final IntegerProperty topSpeedInKmh = new SimpleIntegerProperty();
   private final StringProperty weight = new SimpleStringProperty();
   private final StringProperty length = new SimpleStringProperty();
@@ -20,6 +22,7 @@ public class BirdPM {
   private final StringProperty seasonalBehavior = new SimpleStringProperty();
   private final StringProperty independentAge = new SimpleStringProperty();
   private final StringProperty populationTrend = new SimpleStringProperty();
+  private final StringProperty populationStatus = new SimpleStringProperty();
   private final StringProperty incubationPeriod = new SimpleStringProperty();
 
   public BirdPM(String[] line) {
@@ -27,7 +30,7 @@ public class BirdPM {
     setImage(line[1]);
     setShortDescription(line[2]);
     setPopulationSize(line[3]);
-    setMaximumLifeSpanInYears(Integer.parseInt(line[4]));
+    setMaximumLifeSpanInYears(Float.parseFloat(line[4]));
     setTopSpeedInKmh(Integer.parseInt(line[5]));
     setWeight(line[6]);
     setLength(line[7]);
@@ -37,20 +40,16 @@ public class BirdPM {
     setSeasonalBehavior(line[11]);
     setIndependentAge(line[12]);
     setPopulationTrend(line[13]);
-    setIncubationPeriod(line[14]);
+    setPopulationStatus(line[14]);
+    setIncubationPeriod(line[15]);
 
   }
 
-  public StringProperty incubationPeriodProperty() {
-    return incubationPeriod;
-  }
-
-  public String getIncubationPeriod() {
-    return incubationPeriod.get();
-  }
-
-  public void setIncubationPeriod(String incubationPeriod) {
-    this.incubationPeriod.set(incubationPeriod);
+  public String infoAsLine(String delimiter) {
+    return String.join(delimiter, getName(), getImage(), getShortDescription(), getPopulationSize(),
+        getMaximumLifeSpanInYears().toString(), getTopSpeedInKmh().toString(), getWeight(),
+        getLength(), getWingspan(), getContinents(), getDiet(), getSeasonalBehavior(),
+        getIndependentAge(), getPopulationTrend(), getPopulationStatus(), getIncubationPeriod());
   }
 
   public StringProperty nameProperty() {
@@ -101,15 +100,15 @@ public class BirdPM {
     this.populationSize.set(populationSize);
   }
 
-  public IntegerProperty maximumLifeSpanInYearsProperty() {
+  public FloatProperty maximumLifeSpanInYearsProperty() {
     return maximumLifeSpanInYears;
   }
 
-  public Integer getMaximumLifeSpanInYears() {
+  public Float getMaximumLifeSpanInYears() {
     return maximumLifeSpanInYears.get();
   }
 
-  public void setMaximumLifeSpanInYears(Integer maximumLifeSpanInYears) {
+  public void setMaximumLifeSpanInYears(Float maximumLifeSpanInYears) {
     this.maximumLifeSpanInYears.set(maximumLifeSpanInYears);
   }
 
@@ -220,4 +219,29 @@ public class BirdPM {
   public void setPopulationTrend(String populationTrend) {
     this.populationTrend.set(populationTrend);
   }
+
+  public StringProperty populationStatusProperty() {
+    return populationStatus;
+  }
+
+  public String getPopulationStatus() {
+    return populationStatus.get();
+  }
+
+  public void setPopulationStatus(String populationStatus) {
+    this.populationStatus.set(populationStatus);
+  }
+
+  public StringProperty incubationPeriodProperty() {
+    return incubationPeriod;
+  }
+
+  public String getIncubationPeriod() {
+    return incubationPeriod.get();
+  }
+
+  public void setIncubationPeriod(String incubationPeriod) {
+    this.incubationPeriod.set(incubationPeriod);
+  }
+
 }

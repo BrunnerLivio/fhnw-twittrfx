@@ -3,11 +3,13 @@ package twittrfx;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+
 public class PresentationModel {
 
   private final StringProperty applicationTitle = new SimpleStringProperty("JavaFX App");
 
   private final StringProperty greeting = new SimpleStringProperty("Hello World!");
+
 
   public String getApplicationTitle() {
     return applicationTitle.get();
