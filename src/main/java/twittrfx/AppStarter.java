@@ -7,21 +7,21 @@ import javafx.stage.Stage;
 
 public class AppStarter extends Application {
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		PresentationModel pm = new PresentationModel();
-		Parent rootPanel = new ApplicationUI(pm);
+  @Override
+  public void start(Stage primaryStage) throws Exception {
+    PresentationModel pm = new PresentationModel();
+    Parent rootPanel = new ApplicationUI(pm);
 
-		Scene scene = new Scene(rootPanel);
+    Scene scene = new Scene(rootPanel);
 
-		primaryStage.titleProperty().bind(pm.applicationTitleProperty());
+    primaryStage.titleProperty().bind(pm.applicationTitleProperty());
 
-		primaryStage.setScene(scene);
+    primaryStage.setScene(scene);
 
-		primaryStage.show();
-	}
+    primaryStage.show();
+  }
 
-	public static void main(String[] args) {
-		launch(args);
-	}
+  public static void main(String[] args) {
+    launch(args);
+  }
 }
