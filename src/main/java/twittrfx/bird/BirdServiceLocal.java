@@ -11,12 +11,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BirdServiceLocal implements BirdService {
-  private static final String FILE_NAME = "birds_of_switzerland.tsv";
-
+  private String fileName;
   private static final String DELIMITER = "\t";
 
+  public BirdServiceLocal(String fileName) {
+    this.fileName = fileName;
+  }
+
   public List<BirdPM> load() {
-    try (BufferedReader reader = getReader(FILE_NAME)) {
+    try (BufferedReader reader = getReader(fileName)) {
       return reader.lines()
           .skip(1)
           .map(line -> new BirdPM(line.split(DELIMITER, 22)))
@@ -28,7 +31,7 @@ public class BirdServiceLocal implements BirdService {
 
   @Override
   public void saveAll(List<BirdPM> birds) {
-    try (BufferedWriter writer = getWriter(FILE_NAME)) {
+    try (BufferedWriter writer = getWriter(fileName)) {
       writer.write(
           "name\timage\tshort_description\tpopulation_size\tmaximum_life_span_in_years\ttop_speed_in_kmh\tweight\tlength\twingspan\tcontinents\tdiet\tseasonal_behavior\tindependent_age\tpopulation_trend\tpopulation_status\tincubation_period");
       writer.newLine();

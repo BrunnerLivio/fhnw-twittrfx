@@ -8,7 +8,7 @@ import twittrfx.bird.BirdServiceLocal;
 
 public class BirdListPM {
   private final ObservableList<BirdPM> birds = FXCollections.observableArrayList();
-  private final BirdService birdService = new BirdServiceLocal();
+  private final BirdService birdService = new BirdServiceLocal("birds_of_switzerland.tsv");
 
   public BirdListPM() {
     birds.addAll(this.birdService.load());
