@@ -3,21 +3,24 @@ package twittrfx.bird.bird_list;
 import javafx.geometry.Insets;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import twittrfx.ViewMixin;
 import twittrfx.bird.BirdPM;
 
 public class BirdList extends VBox implements ViewMixin {
   private final BirdListPM model;
   private TableView<BirdPM> table;
-  private Text title;
+  private BirdListTitle birdListTitle;
 
   public BirdList(BirdListPM model) {
     this.model = model;
     init();
+  }
+
+  @Override
+  public void initializeSelf() {
+    addStylesheetFiles("bird_list.css");
   }
 
   private TableView<BirdPM> initializeTable() {
@@ -39,16 +42,15 @@ public class BirdList extends VBox implements ViewMixin {
   @Override
   public void initializeControls() {
     table = this.initializeTable();
-    title = new Text("Birds of Switzerland");
+    birdListTitle = new BirdListTitle(model);
   }
 
   @Override
   public void layoutControls() {
     setPadding(new Insets(10));
     setVgrow(table, Priority.ALWAYS);
-    title.getStyleClass().add("title");
 
-    getChildren().addAll(title, table);
+    getChildren().addAll(birdListTitle, table);
   }
 
   @Override
@@ -62,9 +64,11 @@ public class BirdList extends VBox implements ViewMixin {
     // listView.scrollTo(c.getFrom());
     // }
     // });
+
   }
 
   @Override
   public void setupBindings() {
+
   }
 }

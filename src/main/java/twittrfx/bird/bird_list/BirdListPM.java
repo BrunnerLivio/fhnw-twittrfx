@@ -17,4 +17,11 @@ public class BirdListPM {
   public ObservableList<BirdPM> getBirds() {
     return birds;
   }
+
+  public int highestTopSpeed() {
+    return birds.stream()
+        .mapToInt(bird -> bird.getTopSpeedInKmh())
+        .max()
+        .orElse(0);
+  }
 }
