@@ -1,11 +1,12 @@
 package twittrfx;
 
+import java.util.List;
+
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import twittrfx.bird.bird_view.BirdView;
 import twittrfx.bird.bird_view.BirdViewPM;
 import twittrfx.toolbar.Toolbar;
-import twittrfx.toolbar.ToolbarPM;
 
 public class ApplicationUI extends VBox implements ViewMixin {
 
@@ -25,9 +26,18 @@ public class ApplicationUI extends VBox implements ViewMixin {
 
   @Override
   public void initializeControls() {
-    toolbar = new Toolbar(new ToolbarPM());
+    toolbar = new Toolbar(this.model);
     birdView = new BirdView(new BirdViewPM());
     setVgrow(birdView, Priority.ALWAYS);
+    getStyleClass().add("theme-light");
+  }
+
+  @Override
+  public void setupValueChangedListeners() {
+    model.isDarkMode().addListener((observable, oldValue, newValue) -> {
+      getStyleClass().removeAll(List.of("theme-dark", "theme-light"));
+      getStyleClass().add(newValue ? "theme-dark" : "theme-light");
+    });
   }
 
   @Override
