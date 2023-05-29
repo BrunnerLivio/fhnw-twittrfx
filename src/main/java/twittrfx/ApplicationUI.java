@@ -27,7 +27,7 @@ public class ApplicationUI extends VBox implements ViewMixin {
   @Override
   public void initializeControls() {
     toolbar = new Toolbar(this.model);
-    birdView = new BirdView(new BirdViewPM());
+    birdView = new BirdView(new BirdViewPM(this.model));
     setVgrow(birdView, Priority.ALWAYS);
     getStyleClass().add("theme-light");
   }

@@ -8,6 +8,7 @@ import twittrfx.bird.bird_view.BirdViewPM;
 public class BirdDetail extends VBox implements ViewMixin {
   private BirdViewPM model;
   private BirdDetailHeader header;
+  private BirdDetailForm form;
 
   public BirdDetail(BirdViewPM model) {
     this.model = model;
@@ -23,6 +24,7 @@ public class BirdDetail extends VBox implements ViewMixin {
   @Override
   public void initializeControls() {
     header = new BirdDetailHeader(model);
+    form = new BirdDetailForm(model);
   }
 
   @Override
@@ -35,7 +37,7 @@ public class BirdDetail extends VBox implements ViewMixin {
 
   @Override
   public void layoutControls() {
-    getChildren().addAll(header);
+    getChildren().addAll(header, form);
   }
 
 }

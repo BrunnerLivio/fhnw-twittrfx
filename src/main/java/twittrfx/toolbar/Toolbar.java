@@ -1,7 +1,5 @@
 package twittrfx.toolbar;
 
-import java.util.List;
-
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -42,6 +40,7 @@ public class Toolbar extends HBox implements ViewMixin {
   @Override
   public void setupEventHandlers() {
     darkModeButton.setOnAction(event -> model.toggleDarkMode());
+    saveButton.setOnAction(event -> model.save());
   }
 
 }
