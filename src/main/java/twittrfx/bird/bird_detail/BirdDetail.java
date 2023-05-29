@@ -7,7 +7,7 @@ import twittrfx.bird.bird_view.BirdViewPM;
 
 public class BirdDetail extends VBox implements ViewMixin {
   private BirdViewPM model;
-  private Text title;
+  private BirdDetailHeader header;
 
   public BirdDetail(BirdViewPM model) {
     this.model = model;
@@ -15,28 +15,27 @@ public class BirdDetail extends VBox implements ViewMixin {
   }
 
   @Override
+  public void initializeSelf() {
+    addStylesheetFiles("bird_detail.css");
+    getStyleClass().add("bird-detail");
+  }
+
+  @Override
   public void initializeControls() {
-    title = new Text();
+    header = new BirdDetailHeader(model);
   }
 
   @Override
   public void setupBindings() {
-    title.textProperty().bind(model.selectedBirdProperty().get().nameProperty());
   }
 
   @Override
   public void setupValueChangedListeners() {
-    model.selectedBirdProperty().addListener((observable, oldValue, newValue) -> {
-      if (newValue != null) {
-        setupBindings();
-      }
-    });
   }
 
   @Override
   public void layoutControls() {
-    title.getStyleClass().add("title");
-    getChildren().addAll(title);
+    getChildren().addAll(header);
   }
 
 }

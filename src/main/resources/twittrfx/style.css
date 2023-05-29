@@ -1,55 +1,55 @@
 @font-face {
   src: url("fonts/Raleway-Bold.ttf");
-  font-family: "Raleway";
 }
 
 @font-face {
   src: url("fonts/RobotoCondensed-Regular.ttf");
-  font-family: "Raleway";
 }
 
 .root {
   -fx-pref-height: 300;
   -fx-pref-width: 400;
 
-  -fx-background-color: -fx-bg-color;
+  -fx-background-color: -bg-color;
 }
 
 * {
-  -fx-fill: -fx-fg-color;
+  -fx-fill: -fg-color;
   -fx-font-family: "Roboto Condensed";
   -fx-font-size: 16;
 }
 
 .theme-light {
-  -fx-bg-color: white;
-  -fx-fg-color: #2b2b2b;
-  -fx-primary: #3a536c;
-  -fx-toolbar-bg-color: -fx-primary;
-  -fx-surface-bg-color: #f5f5f5;
+  -bg-color: white;
+  -fg-color: #2b2b2b;
+  -primary: #3a536c;
+  -toolbar-bg-color: -primary;
+  -surface-bg-color: #f5f5f5;
+  -border-color: #ccc;
 }
 
 .theme-dark {
-  -fx-bg-color: rgb(22, 21, 26);
-  -fx-fg-color: rgba(255, 255, 255, 0.85);
-  -fx-toolbar-bg-color: rgb(31, 30, 37);
-  -fx-surface-bg-color: rgb(31, 30, 37);
-  -fx-primary: rgb(102, 143, 249);
+  -bg-color: rgb(22, 21, 26);
+  -fg-color: rgba(255, 255, 255, 0.85);
+  -toolbar-bg-color: rgb(31, 30, 37);
+  -surface-bg-color: rgb(31, 30, 37);
+  -primary: rgb(102, 143, 249);
+  -border-color: rgb(24, 24, 31);
 }
 
 .split-pane {
-  -fx-background-color: -fx-bg-color;
+  -fx-background-color: -bg-color;
 }
 
 .title {
   -fx-font-size: 32;
   -fx-font-weight: bold;
-  -fx-fill: -fx-fg-color;
+  -fx-fill: -fg-color;
   -fx-font-family: "Raleway";
 }
 
 .table-view {
-  -fx-background-color: -fx-surface-bg-color;
+  -fx-background-color: -surface-bg-color;
 }
 
 .table-view .column-header-background .filler {
@@ -70,7 +70,7 @@
 }
 
 .table-view .column-header-background {
-  -fx-background-color: -fx-surface-bg-color;
+  -fx-background-color: -surface-bg-color;
   -fx-background-radius: 7px 7px 0px 0px;
   -fx-background-insets: 0 11px 0 0;
   -fx-padding: 0 0 5px 0;
@@ -86,7 +86,7 @@
 }
 
 .table-view .virtual-flow .table-row-cell {
-  -fx-fill: -fx-fg-color;
+  -fx-fill: -fg-color;
   -fx-padding: 12 0;
   -fx-cell-size: 48;
 }
@@ -107,7 +107,7 @@
 }
 
 .table-row-cell:hover .text {
-  -fx-fill: -fx-primary;
+  -fx-fill: -primary;
 }
 
 .table-view .virtual-flow .scroll-bar:vertical,
