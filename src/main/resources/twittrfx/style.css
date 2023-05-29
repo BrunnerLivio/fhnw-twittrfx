@@ -1,3 +1,13 @@
+@font-face {
+  src: url("fonts/Raleway-Bold.ttf");
+  font-family: "Raleway";
+}
+
+@font-face {
+  src: url("fonts/RobotoCondensed-Regular.ttf");
+  font-family: "Raleway";
+}
+
 .root {
   -fx-pref-height: 300;
   -fx-pref-width: 400;
@@ -7,7 +17,8 @@
 
 * {
   -fx-fill: -fx-fg-color;
-  -fx-font-family: "Roboto", "Segoe UI", Helvetica, Arial, sans-serif;
+  -fx-font-family: "Roboto Condensed";
+  -fx-font-size: 16;
 }
 
 .theme-light {
@@ -31,9 +42,10 @@
 }
 
 .title {
-  -fx-font-size: 24;
+  -fx-font-size: 32;
   -fx-font-weight: bold;
   -fx-fill: -fx-fg-color;
+  -fx-font-family: "Raleway";
 }
 
 .table-view {
@@ -91,6 +103,7 @@
 
 .table-row-cell:hover {
   -fx-background-color: rgba(0, 0, 0, 0.2) !important;
+  -fx-cursor: hand;
 }
 
 .table-row-cell:hover .text {
