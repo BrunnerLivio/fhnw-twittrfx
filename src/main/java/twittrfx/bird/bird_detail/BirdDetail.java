@@ -21,9 +21,14 @@ public class BirdDetail extends VBox implements ViewMixin {
 
   @Override
   public void setupBindings() {
+    title.textProperty().bind(model.selectedBirdProperty().get().nameProperty());
+  }
+
+  @Override
+  public void setupValueChangedListeners() {
     model.selectedBirdProperty().addListener((observable, oldValue, newValue) -> {
       if (newValue != null) {
-        title.textProperty().bind(newValue.nameProperty());
+        setupBindings();
       }
     });
   }

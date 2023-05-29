@@ -58,7 +58,6 @@ public class BirdList extends VBox implements ViewMixin {
   public void setupEventHandlers() {
     table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
       model.setSelectedBird(newValue);
-      System.out.println("Selected bird: " + newValue.nameProperty().get());
     });
   }
 

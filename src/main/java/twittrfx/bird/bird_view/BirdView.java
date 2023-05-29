@@ -1,14 +1,11 @@
 package twittrfx.bird.bird_view;
 
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.control.SplitPane;
 import twittrfx.ViewMixin;
 import twittrfx.bird.bird_detail.BirdDetail;
 import twittrfx.bird.bird_list.BirdList;
 
-public class BirdView extends GridPane implements ViewMixin {
+public class BirdView extends SplitPane implements ViewMixin {
   private BirdViewPM model;
   private BirdList birdList;
   private BirdDetail birdDetail;
@@ -26,16 +23,7 @@ public class BirdView extends GridPane implements ViewMixin {
 
   @Override
   public void layoutControls() {
-    ColumnConstraints cc = new ColumnConstraints();
-    cc.setHgrow(Priority.ALWAYS);
-    getColumnConstraints().addAll(cc, cc);
-
-    RowConstraints rc = new RowConstraints();
-    rc.setVgrow(Priority.ALWAYS);
-    getRowConstraints().addAll(rc);
-
-    add(birdList, 0, 0);
-    add(birdDetail, 1, 0);
+    getItems().addAll(birdList, birdDetail);
   }
 
 }
