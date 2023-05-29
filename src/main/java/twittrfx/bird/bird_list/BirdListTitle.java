@@ -9,16 +9,17 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 import twittrfx.ViewMixin;
 import twittrfx.bird.BirdPM;
+import twittrfx.bird.bird_view.BirdViewPM;
 
 public class BirdListTitle extends GridPane implements ViewMixin {
-  private final BirdListPM model;
+  private final BirdViewPM model;
   private Text title;
   private Text amountOfBirds;
   private Text amountOfBirdsLabel;
   private Text highestTopSpeedLabel;
   private Text highestTopSpeed;
 
-  public BirdListTitle(BirdListPM model) {
+  public BirdListTitle(BirdViewPM model) {
     this.model = model;
     init();
   }

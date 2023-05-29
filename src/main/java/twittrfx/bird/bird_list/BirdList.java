@@ -7,13 +7,14 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import twittrfx.ViewMixin;
 import twittrfx.bird.BirdPM;
+import twittrfx.bird.bird_view.BirdViewPM;
 
 public class BirdList extends VBox implements ViewMixin {
-  private final BirdListPM model;
+  private final BirdViewPM model;
   private TableView<BirdPM> table;
   private BirdListTitle birdListTitle;
 
-  public BirdList(BirdListPM model) {
+  public BirdList(BirdViewPM model) {
     this.model = model;
     init();
   }
@@ -55,6 +56,10 @@ public class BirdList extends VBox implements ViewMixin {
 
   @Override
   public void setupEventHandlers() {
+    table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+      model.setSelectedBird(newValue);
+      System.out.println("Selected bird: " + newValue.nameProperty().get());
+    });
   }
 
   @Override

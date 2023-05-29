@@ -6,9 +6,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import twittrfx.ViewMixin;
 import twittrfx.bird.bird_detail.BirdDetail;
-import twittrfx.bird.bird_detail.BirdDetailPM;
 import twittrfx.bird.bird_list.BirdList;
-import twittrfx.bird.bird_list.BirdListPM;
 
 public class BirdView extends GridPane implements ViewMixin {
   private BirdViewPM model;
@@ -22,8 +20,8 @@ public class BirdView extends GridPane implements ViewMixin {
 
   @Override
   public void initializeControls() {
-    birdList = new BirdList(new BirdListPM());
-    birdDetail = new BirdDetail(new BirdDetailPM());
+    birdList = new BirdList(this.model);
+    birdDetail = new BirdDetail(this.model);
   }
 
   @Override
