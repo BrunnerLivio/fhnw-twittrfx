@@ -15,7 +15,6 @@ import twittrfx.bird.BirdServiceLocal;
 public class PresentationModel {
 
   private ObjectProperty<BirdPM> selectedBird = new SimpleObjectProperty<>();
-  private final StringProperty greeting = new SimpleStringProperty("Hello World!");
   private final BooleanProperty darkMode = new SimpleBooleanProperty(false);
 
   private final BirdService birdService = new BirdServiceLocal("birds_of_switzerland.tsv");
@@ -24,18 +23,6 @@ public class PresentationModel {
   public PresentationModel() {
     birds.addAll(this.birdService.load());
     selectedBird.setValue(getBirds().get(0));
-  }
-
-  public String getGreeting() {
-    return greeting.get();
-  }
-
-  public StringProperty greetingProperty() {
-    return greeting;
-  }
-
-  public void setGreeting(String greeting) {
-    this.greeting.set(greeting);
   }
 
   public void toggleDarkMode() {
