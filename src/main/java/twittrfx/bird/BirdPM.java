@@ -25,6 +25,10 @@ public class BirdPM {
   private final StringProperty populationStatus = new SimpleStringProperty();
   private final StringProperty incubationPeriod = new SimpleStringProperty();
 
+  public BirdPM(String name) {
+    setName(name);
+  }
+
   public BirdPM(String[] line) {
     setName(line[0]);
     setImage(line[1]);

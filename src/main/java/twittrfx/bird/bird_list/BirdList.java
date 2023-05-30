@@ -1,5 +1,6 @@
 package twittrfx.bird.bird_list;
 
+import javafx.collections.ListChangeListener;
 import javafx.geometry.Insets;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -70,11 +71,11 @@ public class BirdList extends VBox implements ViewMixin {
 
   @Override
   public void setupValueChangedListeners() {
-    // model.getElements().addListener((ListChangeListener<String>) c -> {
-    // while (c.next()) {
-    // listView.scrollTo(c.getFrom());
-    // }
-    // });
+    model.getBirds().addListener((ListChangeListener<BirdPM>) c -> {
+      while (c.next()) {
+        table.scrollTo(c.getFrom());
+      }
+    });
 
   }
 

@@ -57,6 +57,7 @@ public class Toolbar extends HBox implements ViewMixin {
         .filter(language -> language.getLanguage().equals(button.getText()))
         .findFirst()
         .orElseThrow())));
+    addButton.setOnAction(event -> model.addBird());
   }
 
 }
