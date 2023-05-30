@@ -1,15 +1,15 @@
 package twittrfx;
+
 import java.util.List;
 
 public interface ViewMixin {
-
   default void init() {
-      initializeSelf();
-      initializeControls();
-      layoutControls();
-      setupEventHandlers();
-      setupValueChangedListeners();
-      setupBindings();
+    initializeSelf();
+    initializeControls();
+    layoutControls();
+    setupEventHandlers();
+    setupValueChangedListeners();
+    setupBindings();
   }
 
   default void initializeSelf() {
@@ -29,10 +29,10 @@ public interface ViewMixin {
   }
 
   default void addStylesheetFiles(String... stylesheetFile) {
-      for (String file : stylesheetFile) {
-          String stylesheet = getClass().getResource(file).toExternalForm();
-          getStylesheets().add(stylesheet);
-      }
+    for (String file : stylesheetFile) {
+      String stylesheet = getClass().getResource(file).toExternalForm();
+      getStylesheets().add(stylesheet);
+    }
   }
 
   List<String> getStylesheets();

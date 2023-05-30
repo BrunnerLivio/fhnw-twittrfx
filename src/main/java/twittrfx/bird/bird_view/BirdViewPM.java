@@ -8,7 +8,7 @@ import twittrfx.bird.BirdPM;
 
 public class BirdViewPM {
   private ObjectProperty<BirdPM> selectedBird = new SimpleObjectProperty<>();
-  private PresentationModel rootModel;
+  private final PresentationModel rootModel;
 
   public BirdViewPM(PresentationModel rootModel) {
     selectedBird.setValue(rootModel.getBirds().get(0));

@@ -10,6 +10,8 @@ import javafx.scene.text.Text;
 import twittrfx.ViewMixin;
 import twittrfx.bird.BirdPM;
 import twittrfx.bird.bird_view.BirdViewPM;
+import twittrfx.i18n.Caption;
+import twittrfx.i18n.I18nPM;
 
 public class BirdListTitle extends GridPane implements ViewMixin {
   private final BirdViewPM model;
@@ -18,19 +20,22 @@ public class BirdListTitle extends GridPane implements ViewMixin {
   private Text amountOfBirdsLabel;
   private Text highestTopSpeedLabel;
   private Text highestTopSpeed;
+  private final I18nPM i18n;
 
-  public BirdListTitle(BirdViewPM model) {
+  public BirdListTitle(BirdViewPM model, I18nPM i18n) {
     this.model = model;
+    this.i18n = i18n;
+
     init();
   }
 
   @Override
   public void initializeControls() {
-    title = new Text("Birds of Switzerland");
-    amountOfBirdsLabel = new Text("Amount of birds:");
+    title = new Text();
+    amountOfBirdsLabel = new Text();
     amountOfBirds = new Text(Integer.toString(model.getBirds().size()));
 
-    highestTopSpeedLabel = new Text("Highest top speed:");
+    highestTopSpeedLabel = new Text();
     highestTopSpeed = new Text(Integer.toString(model.highestTopSpeed()) + " km/h");
   }
 
@@ -54,7 +59,15 @@ public class BirdListTitle extends GridPane implements ViewMixin {
   }
 
   @Override
+  public void setupBindings() {
+    title.textProperty().bind(i18n.get(Caption.BIRDS_OF_SWITZERLAND));
+    amountOfBirdsLabel.textProperty().bind(Bindings.concat(i18n.get(Caption.AMOUNT_OF_BIRDS), ":"));
+    highestTopSpeedLabel.textProperty().bind(Bindings.concat(i18n.get(Caption.HIGHEST_TOP_SPEED), ":"));
+  }
+
+  @Override
   public void setupValueChangedListeners() {
+    // TODO: work on this later
     Bindings.size(model.getBirds()).addListener((observable, oldValue, newValue) -> {
       amountOfBirds.setText("Amount of birds: " + newValue);
     });

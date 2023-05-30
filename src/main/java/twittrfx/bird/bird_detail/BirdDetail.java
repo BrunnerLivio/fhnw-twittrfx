@@ -1,17 +1,19 @@
 package twittrfx.bird.bird_detail;
 
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import twittrfx.ViewMixin;
 import twittrfx.bird.bird_view.BirdViewPM;
+import twittrfx.i18n.I18nPM;
 
 public class BirdDetail extends VBox implements ViewMixin {
-  private BirdViewPM model;
+  private final BirdViewPM model;
+  private final I18nPM i18n;
   private BirdDetailHeader header;
   private BirdDetailForm form;
 
-  public BirdDetail(BirdViewPM model) {
+  public BirdDetail(BirdViewPM model, I18nPM i18n) {
     this.model = model;
+    this.i18n = i18n;
     init();
   }
 
@@ -24,7 +26,7 @@ public class BirdDetail extends VBox implements ViewMixin {
   @Override
   public void initializeControls() {
     header = new BirdDetailHeader(model);
-    form = new BirdDetailForm(model);
+    form = new BirdDetailForm(model, i18n);
   }
 
   @Override

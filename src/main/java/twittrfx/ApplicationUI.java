@@ -6,16 +6,19 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import twittrfx.bird.bird_view.BirdView;
 import twittrfx.bird.bird_view.BirdViewPM;
+import twittrfx.i18n.I18nPM;
 import twittrfx.toolbar.Toolbar;
 
 public class ApplicationUI extends VBox implements ViewMixin {
 
   private final PresentationModel model;
+  private final I18nPM i18n;
   private Toolbar toolbar;
   private BirdView birdView;
 
-  public ApplicationUI(PresentationModel model) {
+  public ApplicationUI(PresentationModel model, I18nPM i18n) {
     this.model = model;
+    this.i18n = i18n;
     init();
   }
 
@@ -26,8 +29,8 @@ public class ApplicationUI extends VBox implements ViewMixin {
 
   @Override
   public void initializeControls() {
-    toolbar = new Toolbar(this.model);
-    birdView = new BirdView(new BirdViewPM(this.model));
+    toolbar = new Toolbar(model, i18n);
+    birdView = new BirdView(new BirdViewPM(model), i18n);
     setVgrow(birdView, Priority.ALWAYS);
     getStyleClass().add("theme-light");
   }

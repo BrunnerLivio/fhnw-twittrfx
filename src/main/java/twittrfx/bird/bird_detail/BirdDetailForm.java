@@ -8,33 +8,39 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import twittrfx.ViewMixin;
 import twittrfx.bird.bird_view.BirdViewPM;
+import twittrfx.i18n.Caption;
+import twittrfx.i18n.I18nPM;
 
 public class BirdDetailForm extends GridPane implements ViewMixin {
-  private BirdViewPM model;
+  private final BirdViewPM model;
+  private final I18nPM i18n;
   private TextField name;
   private Label nameLabel;
 
   private TextField shortDescription;
   private Label shortDescriptionLabel;
 
-  public BirdDetailForm(BirdViewPM model) {
+  public BirdDetailForm(BirdViewPM model, I18nPM i18n) {
     this.model = model;
+    this.i18n = i18n;
     init();
   }
 
   @Override
   public void initializeControls() {
     name = new TextField();
-    nameLabel = new Label("Name");
+    nameLabel = new Label();
 
     shortDescription = new TextField();
-    shortDescriptionLabel = new Label("Short Description");
+    shortDescriptionLabel = new Label();
   }
 
   @Override
   public void setupBindings() {
     name.textProperty().bindBidirectional(model.selectedBirdProperty().get().nameProperty());
     shortDescription.textProperty().bindBidirectional(model.selectedBirdProperty().get().shortDescriptionProperty());
+    nameLabel.textProperty().bind(i18n.get(Caption.NAME));
+    shortDescriptionLabel.textProperty().bind(i18n.get(Caption.SHORT_DESCRIPTION));
   }
 
   @Override

@@ -12,8 +12,6 @@ import twittrfx.bird.BirdServiceLocal;
 
 public class PresentationModel {
 
-  private final StringProperty applicationTitle = new SimpleStringProperty("JavaFX App");
-
   private final StringProperty greeting = new SimpleStringProperty("Hello World!");
   private final BooleanProperty darkMode = new SimpleBooleanProperty(false);
 
@@ -22,18 +20,6 @@ public class PresentationModel {
 
   public PresentationModel() {
     birds.addAll(this.birdService.load());
-  }
-
-  public String getApplicationTitle() {
-    return applicationTitle.get();
-  }
-
-  public StringProperty applicationTitleProperty() {
-    return applicationTitle;
-  }
-
-  public void setApplicationTitle(String applicationTitle) {
-    this.applicationTitle.set(applicationTitle);
   }
 
   public String getGreeting() {
@@ -63,4 +49,5 @@ public class PresentationModel {
   public ObservableList<BirdPM> getBirds() {
     return birds;
   }
+
 }
