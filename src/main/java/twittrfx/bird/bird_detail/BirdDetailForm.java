@@ -6,6 +6,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
+import javafx.util.converter.NumberStringConverter;
 import twittrfx.ViewMixin;
 import twittrfx.bird.bird_view.BirdViewPM;
 import twittrfx.i18n.Caption;
@@ -14,11 +15,18 @@ import twittrfx.i18n.I18nPM;
 public class BirdDetailForm extends GridPane implements ViewMixin {
   private final BirdViewPM model;
   private final I18nPM i18n;
+
   private TextField name;
   private Label nameLabel;
 
   private TextField shortDescription;
   private Label shortDescriptionLabel;
+
+  private TextField populationSize;
+  private Label populationSizeLabel;
+
+  private TextField maximumLifeSpan;
+  private Label maximumLifeSpanLabel;
 
   public BirdDetailForm(BirdViewPM model, I18nPM i18n) {
     this.model = model;
@@ -33,6 +41,12 @@ public class BirdDetailForm extends GridPane implements ViewMixin {
 
     shortDescription = new TextField();
     shortDescriptionLabel = new Label();
+
+    maximumLifeSpan = new TextField();
+    maximumLifeSpanLabel = new Label();
+
+    populationSize = new TextField();
+    populationSizeLabel = new Label();
   }
 
   @Override
@@ -41,6 +55,12 @@ public class BirdDetailForm extends GridPane implements ViewMixin {
     shortDescription.textProperty().bindBidirectional(model.selectedBirdProperty().get().shortDescriptionProperty());
     nameLabel.textProperty().bind(i18n.get(Caption.NAME));
     shortDescriptionLabel.textProperty().bind(i18n.get(Caption.SHORT_DESCRIPTION));
+    maximumLifeSpanLabel.textProperty().bind(i18n.get(Caption.MAXIMUM_LIFE_SPAN));
+    maximumLifeSpan.textProperty().bindBidirectional(
+        model.selectedBirdProperty().get().maximumLifeSpanInYearsProperty(),
+        new NumberStringConverter());
+    populationSizeLabel.textProperty().bind(i18n.get(Caption.POPULATION_SIZE));
+    populationSize.textProperty().bindBidirectional(model.selectedBirdProperty().get().populationSizeProperty());
   }
 
   @Override
@@ -67,5 +87,10 @@ public class BirdDetailForm extends GridPane implements ViewMixin {
 
     add(shortDescriptionLabel, 0, 1);
     add(shortDescription, 1, 1, 3, 1);
+    add(maximumLifeSpanLabel, 0, 2);
+    add(maximumLifeSpan, 1, 2);
+
+    add(populationSizeLabel, 2, 2);
+    add(populationSize, 3, 2);
   }
 }
