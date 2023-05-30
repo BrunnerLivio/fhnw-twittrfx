@@ -128,3 +128,13 @@
 .table-view .nested-column-header > * {
   -fx-fill: transparent;
 }
+
+.icon-button {
+  -fx-background-color: transparent;
+  -fx-opacity: 0.8;
+}
+
+.icon-button:hover {
+  -fx-cursor: hand;
+  -fx-opacity: 1;
+}

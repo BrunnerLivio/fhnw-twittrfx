@@ -37,7 +37,7 @@ public class ApplicationUI extends VBox implements ViewMixin {
 
   @Override
   public void setupValueChangedListeners() {
-    model.isDarkMode().addListener((observable, oldValue, newValue) -> {
+    model.darkModeProperty().addListener((observable, oldValue, newValue) -> {
       getStyleClass().removeAll(List.of("theme-dark", "theme-light"));
       getStyleClass().add(newValue ? "theme-dark" : "theme-light");
     });

@@ -29,8 +29,8 @@ public class PresentationModel {
     darkMode.set(!darkMode.get());
   }
 
-  public BooleanProperty isDarkMode() {
-    return darkMode;
+  public boolean isDarkMode() {
+    return darkMode.getValue();
   }
 
   public void save() {
@@ -62,5 +62,9 @@ public class PresentationModel {
 
   public ObjectProperty<BirdPM> selectedBirdProperty() {
     return selectedBird;
+  }
+
+  public BooleanProperty darkModeProperty() {
+    return darkMode;
   }
 }
