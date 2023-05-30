@@ -8,6 +8,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.util.converter.NumberStringConverter;
 import twittrfx.ViewMixin;
+import twittrfx.bird.BirdPM;
 import twittrfx.bird.bird_view.BirdViewPM;
 import twittrfx.i18n.Caption;
 import twittrfx.i18n.I18nPM;
@@ -63,9 +64,19 @@ public class BirdDetailForm extends GridPane implements ViewMixin {
     populationSize.textProperty().bindBidirectional(model.selectedBirdProperty().get().populationSizeProperty());
   }
 
+  private void unbind(BirdPM oldValue) {
+    name.textProperty().unbindBidirectional(oldValue.nameProperty());
+    shortDescription.textProperty().unbindBidirectional(oldValue.shortDescriptionProperty());
+    maximumLifeSpan.textProperty().unbindBidirectional(oldValue.maximumLifeSpanInYearsProperty());
+    populationSize.textProperty().unbindBidirectional(oldValue.populationSizeProperty());
+  }
+
   @Override
   public void setupValueChangedListeners() {
     model.selectedBirdProperty().addListener((observable, oldValue, newValue) -> {
+      if (oldValue != null) {
+        unbind(oldValue);
+      }
       if (newValue != null) {
         setupBindings();
       }
