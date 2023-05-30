@@ -1,5 +1,7 @@
 package twittrfx.bird.bird_view;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.IntegerBinding;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
@@ -19,11 +21,10 @@ public class BirdViewPM {
     return rootModel.getBirds();
   }
 
-  public int highestTopSpeed() {
-    return getBirds().stream()
-        .mapToInt(bird -> bird.getTopSpeedInKmh())
-        .max()
-        .orElse(0);
+  public IntegerBinding highestTopSpeed() {
+    return Bindings
+        .createIntegerBinding(() -> getBirds().stream().mapToInt(b -> b.getTopSpeedInKmh()).max().orElse(0),
+            getBirds());
   }
 
   public BirdPM getSelectedBird() {

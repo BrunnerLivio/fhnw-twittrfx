@@ -29,6 +29,12 @@ public class BirdDetailForm extends GridPane implements ViewMixin {
   private TextField maximumLifeSpan;
   private Label maximumLifeSpanLabel;
 
+  private TextField topSpeed;
+  private Label topSpeedLabel;
+
+  private TextField weight;
+  private Label weightLabel;
+
   public BirdDetailForm(BirdViewPM model, I18nPM i18n) {
     this.model = model;
     this.i18n = i18n;
@@ -48,6 +54,12 @@ public class BirdDetailForm extends GridPane implements ViewMixin {
 
     populationSize = new TextField();
     populationSizeLabel = new Label();
+
+    topSpeed = new TextField();
+    topSpeedLabel = new Label();
+
+    weight = new TextField();
+    weightLabel = new Label();
   }
 
   @Override
@@ -57,11 +69,20 @@ public class BirdDetailForm extends GridPane implements ViewMixin {
     nameLabel.textProperty().bind(i18n.get(Caption.NAME));
     shortDescriptionLabel.textProperty().bind(i18n.get(Caption.SHORT_DESCRIPTION));
     maximumLifeSpanLabel.textProperty().bind(i18n.get(Caption.MAXIMUM_LIFE_SPAN));
+
     maximumLifeSpan.textProperty().bindBidirectional(
         model.selectedBirdProperty().get().maximumLifeSpanInYearsProperty(),
         new NumberStringConverter());
+
     populationSizeLabel.textProperty().bind(i18n.get(Caption.POPULATION_SIZE));
     populationSize.textProperty().bindBidirectional(model.selectedBirdProperty().get().populationSizeProperty());
+
+    topSpeedLabel.textProperty().bind(i18n.get(Caption.TOP_SPEED));
+    topSpeed.textProperty().bindBidirectional(model.selectedBirdProperty().get().topSpeedInKmhProperty(),
+        new NumberStringConverter());
+
+    weightLabel.textProperty().bind(i18n.get(Caption.WEIGHT));
+    weight.textProperty().bindBidirectional(model.selectedBirdProperty().get().weightProperty());
   }
 
   private void unbind(BirdPM oldValue) {
@@ -69,6 +90,8 @@ public class BirdDetailForm extends GridPane implements ViewMixin {
     shortDescription.textProperty().unbindBidirectional(oldValue.shortDescriptionProperty());
     maximumLifeSpan.textProperty().unbindBidirectional(oldValue.maximumLifeSpanInYearsProperty());
     populationSize.textProperty().unbindBidirectional(oldValue.populationSizeProperty());
+    topSpeed.textProperty().unbindBidirectional(oldValue.topSpeedInKmhProperty());
+    weight.textProperty().unbindBidirectional(oldValue.weightProperty());
   }
 
   @Override
@@ -98,10 +121,15 @@ public class BirdDetailForm extends GridPane implements ViewMixin {
 
     add(shortDescriptionLabel, 0, 1);
     add(shortDescription, 1, 1, 3, 1);
-    add(maximumLifeSpanLabel, 0, 2);
-    add(maximumLifeSpan, 1, 2);
 
     add(populationSizeLabel, 2, 2);
     add(populationSize, 3, 2);
+    add(maximumLifeSpanLabel, 0, 2);
+    add(maximumLifeSpan, 1, 2);
+
+    add(topSpeedLabel, 0, 3);
+    add(topSpeed, 1, 3);
+    add(weightLabel, 2, 3);
+    add(weight, 3, 3);
   }
 }

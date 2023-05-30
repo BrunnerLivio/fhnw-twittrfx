@@ -9,6 +9,8 @@ public enum Caption {
   BIRDS_OF_SWITZERLAND("Birds of Switzerland", "Vögel der Schweiz", "Papageien der See"),
   MAXIMUM_LIFE_SPAN("Maximum Life Span", "Maximale Lebensdauer", "Maximale Lebensdauer"),
   POPULATION_SIZE("Population Size", "Bevölkerungsgröße", "Bevölkerungsgröße"),
+  TOP_SPEED("Top Speed", "Höchstgeschwindigkeit", "Höchstgeschwindigkeit"),
+  WEIGHT("Weight", "Gewicht", "Gewicht"),
 
   NAME("Name", "Name", "Titel"),
   SHORT_DESCRIPTION("Short Description", "Kurzbeschreibung", "Kurzbeschreibung");

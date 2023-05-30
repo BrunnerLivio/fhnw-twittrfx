@@ -36,7 +36,7 @@ public class BirdListTitle extends GridPane implements ViewMixin {
     amountOfBirds = new Text(Integer.toString(model.getBirds().size()));
 
     highestTopSpeedLabel = new Text();
-    highestTopSpeed = new Text(Integer.toString(model.highestTopSpeed()) + " km/h");
+    highestTopSpeed = new Text();
   }
 
   @Override
@@ -63,6 +63,7 @@ public class BirdListTitle extends GridPane implements ViewMixin {
     title.textProperty().bind(i18n.get(Caption.BIRDS_OF_SWITZERLAND));
     amountOfBirdsLabel.textProperty().bind(Bindings.concat(i18n.get(Caption.AMOUNT_OF_BIRDS), ":"));
     highestTopSpeedLabel.textProperty().bind(Bindings.concat(i18n.get(Caption.HIGHEST_TOP_SPEED), ":"));
+    highestTopSpeed.textProperty().bind(Bindings.concat(model.highestTopSpeed(), " km/h"));
   }
 
   @Override
@@ -74,6 +75,7 @@ public class BirdListTitle extends GridPane implements ViewMixin {
 
     model.getBirds().addListener((ListChangeListener<BirdPM>) c -> {
       while (c.next()) {
+        System.out.println("BirdListTitle.setupValueChangedListeners");
         if (c.wasAdded() || c.wasRemoved() || c.wasUpdated() || c.wasReplaced()) {
           highestTopSpeed.setText("Highest top speed: " + model.highestTopSpeed() + " km/h");
         }
