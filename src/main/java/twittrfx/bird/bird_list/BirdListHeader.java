@@ -1,5 +1,7 @@
 package twittrfx.bird.bird_list;
 
+import java.util.stream.Collectors;
+
 import javafx.beans.binding.Bindings;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.ColumnConstraints;
@@ -13,7 +15,7 @@ import twittrfx.bird.bird_view.BirdViewPM;
 import twittrfx.i18n.Caption;
 import twittrfx.i18n.I18nPM;
 
-public class BirdListTitle extends GridPane implements ViewMixin {
+public class BirdListHeader extends GridPane implements ViewMixin {
   private final BirdViewPM model;
   private Text title;
   private Text amountOfBirds;
@@ -22,7 +24,7 @@ public class BirdListTitle extends GridPane implements ViewMixin {
   private Text highestTopSpeed;
   private final I18nPM i18n;
 
-  public BirdListTitle(BirdViewPM model, I18nPM i18n) {
+  public BirdListHeader(BirdViewPM model, I18nPM i18n) {
     this.model = model;
     this.i18n = i18n;
 
@@ -64,23 +66,8 @@ public class BirdListTitle extends GridPane implements ViewMixin {
     amountOfBirdsLabel.textProperty().bind(Bindings.concat(i18n.get(Caption.AMOUNT_OF_BIRDS), ":"));
     highestTopSpeedLabel.textProperty().bind(Bindings.concat(i18n.get(Caption.HIGHEST_TOP_SPEED), ":"));
     highestTopSpeed.textProperty().bind(Bindings.concat(model.highestTopSpeed(), " km/h"));
+    amountOfBirds.textProperty().bind(Bindings.size(model.getBirds()).asString());
+    highestTopSpeed.textProperty().bind(
+        Bindings.createIntegerBinding(() -> model.highestTopSpeed(), model.getBirds()).asString().concat(" km/h"));
   }
-
-  @Override
-  public void setupValueChangedListeners() {
-    // TODO: work on this later
-    Bindings.size(model.getBirds()).addListener((observable, oldValue, newValue) -> {
-      amountOfBirds.setText("Amount of birds: " + newValue);
-    });
-
-    model.getBirds().addListener((ListChangeListener<BirdPM>) c -> {
-      while (c.next()) {
-        System.out.println("BirdListTitle.setupValueChangedListeners");
-        if (c.wasAdded() || c.wasRemoved() || c.wasUpdated() || c.wasReplaced()) {
-          highestTopSpeed.setText("Highest top speed: " + model.highestTopSpeed() + " km/h");
-        }
-      }
-    });
-  }
-
 }

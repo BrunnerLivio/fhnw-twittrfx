@@ -16,7 +16,7 @@ public class BirdList extends VBox implements ViewMixin {
   private final BirdViewPM model;
   private final I18nPM i18n;
   private TableView<BirdPM> table;
-  private BirdListTitle birdListTitle;
+  private BirdListHeader birdListTitle;
   private TableColumn<BirdPM, String> nameColumn;
   private TableColumn<BirdPM, String> populationTrend;
   private TableColumn<BirdPM, String> populationStatus;
@@ -51,7 +51,7 @@ public class BirdList extends VBox implements ViewMixin {
   @Override
   public void initializeControls() {
     table = this.initializeTable();
-    birdListTitle = new BirdListTitle(model, i18n);
+    birdListTitle = new BirdListHeader(model, i18n);
   }
 
   @Override

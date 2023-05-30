@@ -18,10 +18,8 @@ public class BirdViewPM {
     return rootModel.getBirds();
   }
 
-  public IntegerBinding highestTopSpeed() {
-    return Bindings
-        .createIntegerBinding(() -> getBirds().stream().mapToInt(b -> b.getTopSpeedInKmh()).max().orElse(0),
-            getBirds());
+  public Integer highestTopSpeed() {
+    return getBirds().stream().mapToInt(b -> b.getTopSpeedInKmh()).max().orElse(0);
   }
 
   public BirdPM getSelectedBird() {

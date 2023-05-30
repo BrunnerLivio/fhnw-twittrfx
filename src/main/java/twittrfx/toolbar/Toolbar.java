@@ -47,7 +47,7 @@ public class Toolbar extends HBox implements ViewMixin {
     setPadding(new Insets(10));
     setId("toolbar");
 
-    getChildren().addAll(saveButton, addButton, darkModeButton, deleteButton);
+    getChildren().addAll(saveButton, addButton, deleteButton, darkModeButton);
     getChildren().addAll(languages);
   }
 

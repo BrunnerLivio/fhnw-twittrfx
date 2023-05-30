@@ -1,11 +1,10 @@
 package twittrfx;
 
+import javafx.beans.Observable;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import twittrfx.bird.BirdPM;
@@ -18,7 +17,8 @@ public class PresentationModel {
   private final BooleanProperty darkMode = new SimpleBooleanProperty(false);
 
   private final BirdService birdService = new BirdServiceLocal("birds_of_switzerland.tsv");
-  private final ObservableList<BirdPM> birds = FXCollections.observableArrayList();
+  private final ObservableList<BirdPM> birds = FXCollections
+      .observableArrayList(item -> new Observable[] { item.topSpeedInKmhProperty() });
 
   public PresentationModel() {
     birds.addAll(this.birdService.load());
@@ -49,6 +49,7 @@ public class PresentationModel {
 
   public void removeBird(BirdPM bird) {
     birds.remove(bird);
+    setSelectedBird(birds.get(birds.size() - 1));
   }
 
   public BirdPM getSelectedBird() {
