@@ -14,6 +14,7 @@ import twittrfx.i18n.Language;
 public class Toolbar extends HBox implements ViewMixin {
   private PresentationModel model;
   private Button saveButton;
+  private Button deleteButton;
   private Button addButton;
   private Button darkModeButton;
   private List<Button> languages = Stream.of(Language.values())
@@ -38,6 +39,7 @@ public class Toolbar extends HBox implements ViewMixin {
     saveButton = new Button("Save");
     addButton = new Button("Add");
     darkModeButton = new Button("Dark Mode");
+    deleteButton = new Button("Delete");
   }
 
   @Override
@@ -45,7 +47,7 @@ public class Toolbar extends HBox implements ViewMixin {
     setPadding(new Insets(10));
     setId("toolbar");
 
-    getChildren().addAll(saveButton, addButton, darkModeButton);
+    getChildren().addAll(saveButton, addButton, darkModeButton, deleteButton);
     getChildren().addAll(languages);
   }
 
@@ -58,6 +60,8 @@ public class Toolbar extends HBox implements ViewMixin {
         .findFirst()
         .orElseThrow())));
     addButton.setOnAction(event -> model.addBird());
+    deleteButton.setOnAction(event -> model.removeBird(model.getSelectedBird()));
+
   }
 
 }

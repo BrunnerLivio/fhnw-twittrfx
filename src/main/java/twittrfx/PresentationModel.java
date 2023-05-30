@@ -47,6 +47,10 @@ public class PresentationModel {
     setSelectedBird(bird);
   }
 
+  public void removeBird(BirdPM bird) {
+    birds.remove(bird);
+  }
+
   public BirdPM getSelectedBird() {
     return selectedBird.getValue();
   }
@@ -58,5 +62,4 @@ public class PresentationModel {
   public ObjectProperty<BirdPM> selectedBirdProperty() {
     return selectedBird;
   }
-
 }
