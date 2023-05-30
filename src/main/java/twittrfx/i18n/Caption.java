@@ -7,13 +7,22 @@ public enum Caption {
   AMOUNT_OF_BIRDS("Amount of Birds", "Anzahl der Vögel", "Anzahl Papageien"),
   HIGHEST_TOP_SPEED("Highest Top Speed", "Höchste Höchstgeschwindigkeit", "Schnell wie der Wind"),
   BIRDS_OF_SWITZERLAND("Birds of Switzerland", "Vögel der Schweiz", "Papageien der See"),
+
+  NAME("Name", "Name", "Titel"),
+  SHORT_DESCRIPTION("Short Description", "Kurzbeschreibung", "Kurzbeschreibung"),
   MAXIMUM_LIFE_SPAN("Maximum Life Span", "Maximale Lebensdauer", "Maximale Lebensdauer"),
   POPULATION_SIZE("Population Size", "Bevölkerungsgröße", "Bevölkerungsgröße"),
   TOP_SPEED("Top Speed", "Höchstgeschwindigkeit", "Höchstgeschwindigkeit"),
   WEIGHT("Weight", "Gewicht", "Gewicht"),
+  LENGTH("Length", "Länge", "Länge"),
+  WINGSPAN("Wingspan", "Spannweite", "Spannweite"),
+  CONTINENTS("Continents", "Kontinente", "Kontinente"),
+  INCUBATION_PERIOD("Incubation Period", "Brutzeit", "Brutzeit"),
+  DIET("Diet", "Diät", "Diät"),
+  SEASONAL_BEHAVIOR("Seasonal Behavior", "Saisonales Verhalten", "Saisonales Verhalten"),
+  INDEPENDENT_AGE("Independent Age", "Unabhängiges Alter", "Unabhängiges Alter"),
+  IMAGE("Image", "Bild", "Bild");
 
-  NAME("Name", "Name", "Titel"),
-  SHORT_DESCRIPTION("Short Description", "Kurzbeschreibung", "Kurzbeschreibung");
 
   private final String english;
   private final String german;
