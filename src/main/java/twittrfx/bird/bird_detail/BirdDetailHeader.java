@@ -1,5 +1,6 @@
 package twittrfx.bird.bird_detail;
 
+import javafx.beans.binding.Bindings;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -38,16 +39,33 @@ public class BirdDetailHeader extends HBox implements ViewMixin {
   public void setupBindings() {
     title.textProperty().bind(model.selectedBirdProperty().get().nameProperty());
     continents.textProperty().bind(model.selectedBirdProperty().get().continentsProperty());
-    updateImage(model.selectedBirdProperty().get().imageProperty().get());
+    imageView.imageProperty()
+        .bind(Bindings.createObjectBinding(() -> updateImage(), model.selectedBirdProperty().get().imageProperty()));
+    // updateImage(model.selectedBirdProperty().get().imageProperty().get());
   }
 
-  private void updateImage(String imageUrl) {
-    imageView.setImage(new Image(imageUrl));
+  public void unbind() {
+    title.textProperty().unbind();
+    continents.textProperty().unbind();
+  }
+
+  private Image updateImage() {
+    String imageUrl = model.selectedBirdProperty().get().imageProperty().get();
+    if (imageUrl == null) {
+      return new Image(getClass().getResourceAsStream("image-not-found.png"));
+    }
+
+    try {
+      return new Image(imageUrl);
+    } catch (Exception e) {
+      return new Image(getClass().getResourceAsStream("image-broken.png"));
+    }
   }
 
   @Override
   public void setupValueChangedListeners() {
     model.selectedBirdProperty().addListener((observable, oldValue, newValue) -> {
+      unbind();
       if (newValue != null) {
         setupBindings();
       }

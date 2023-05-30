@@ -27,6 +27,21 @@ public class BirdPM {
 
   public BirdPM(String name) {
     setName(name);
+    setImage("");
+    setShortDescription("");
+    setPopulationSize("");
+    setMaximumLifeSpanInYears(0f);
+    setTopSpeedInKmh(0);
+    setWeight("");
+    setLength("");
+    setWingspan("");
+    setContinents("");
+    setDiet("");
+    setSeasonalBehavior("");
+    setIndependentAge("");
+    setPopulationTrend("");
+    setPopulationStatus("");
+    setIncubationPeriod("");
   }
 
   public BirdPM(String[] line) {

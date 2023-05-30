@@ -1,7 +1,5 @@
 package twittrfx.bird.bird_view;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.IntegerBinding;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import twittrfx.PresentationModel;
