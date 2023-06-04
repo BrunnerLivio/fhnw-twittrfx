@@ -50,11 +50,10 @@ class BirdService
     return $this->birds[$id] ?? null;
   }
 
-  public function addOne(
-    BirdDto $bird
-  ): void {
 
-    $this->birds[] = $bird;
+  public function saveAll(array $birds): void
+  {
+    $this->birds = $birds;
     $this->save();
   }
 

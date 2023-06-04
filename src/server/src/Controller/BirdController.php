@@ -6,6 +6,7 @@ use App\Service\BirdService;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Annotation\Route;
@@ -44,18 +45,46 @@ class BirdController extends AbstractController
   }
 
   #[Route('/bird', methods: ['POST'])]
-  public function addOne(
-  #[MapRequestPayload] BirdDto $bird
+  public function saveAll(
+    Request $request
   ): Response {
-    $this->logger->info('Adding bird');
+    $birds = json_decode($request->getContent(), true);
 
-    $this->logger->info('Bird Name ' . $bird->name);
-    $this->birdService->addOne($bird);
+    $this->logger->info('Saving birds');
+
+    $newBirds = [];
+
+    foreach ($birds as $bird) {
+      $birdDto = new BirdDto(
+        $bird['name'],
+        $bird['image'],
+        $bird['shortDescription'],
+        $bird['populationSize'],
+        $bird['maximumLifeSpanInYears'],
+        $bird['topSpeedInKmh'],
+        $bird['weight'],
+        $bird['length'],
+        $bird['wingspan'],
+        $bird['continents'],
+        $bird['diet'],
+        $bird['seasonalBehavior'],
+        $bird['independentAge'],
+        $bird['populationTrend'],
+        $bird['populationStatus'],
+        $bird['incubationPeriod'],
+      );
+
+      $newBirds[] = $birdDto;
+    }
+
+    $this->birdService->saveAll($newBirds);
 
     return new JsonResponse([
       'message' => 'Bird added'
     ]);
   }
+
+
 
 
 }

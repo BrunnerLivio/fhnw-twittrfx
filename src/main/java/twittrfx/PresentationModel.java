@@ -9,19 +9,37 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import twittrfx.bird.BirdPM;
 import twittrfx.bird.BirdService;
+import twittrfx.bird.BirdServiceCloud;
 import twittrfx.bird.BirdServiceLocal;
 
 public class PresentationModel {
+  private final BirdService birdServiceLocal = new BirdServiceLocal("birds_of_switzerland.tsv");
+  private final BirdService birdServiceCloud = new BirdServiceCloud();
+
+  private ObjectProperty<BirdService> birdService = new SimpleObjectProperty<>(birdServiceLocal);
+
+  private final ObjectProperty<ConnectionType> connectionType = new SimpleObjectProperty<>(
+      ConnectionType.LOCAL);
 
   private ObjectProperty<BirdPM> selectedBird = new SimpleObjectProperty<>();
   private final BooleanProperty darkMode = new SimpleBooleanProperty(false);
 
-  private final BirdService birdService = new BirdServiceLocal("birds_of_switzerland.tsv");
   private final ObservableList<BirdPM> birds = FXCollections
       .observableArrayList(item -> new Observable[] { item.topSpeedInKmhProperty() });
 
   public PresentationModel() {
-    birds.addAll(this.birdService.load());
+    load();
+  }
+
+  private void load() {
+    birds.clear();
+
+    try {
+      birds.addAll(this.birdService.get().load());
+    } catch (Exception e) {
+      e.printStackTrace();
+      throw new IllegalStateException("load failed");
+    }
     selectedBird.setValue(getBirds().get(0));
   }
 
@@ -34,7 +52,12 @@ public class PresentationModel {
   }
 
   public void save() {
-    birdService.saveAll(birds.stream().toList());
+    try {
+      this.birdService.get().saveAll(birds.stream().toList());
+    } catch (Exception e) {
+      e.printStackTrace();
+      throw new IllegalStateException("save failed");
+    }
   }
 
   public ObservableList<BirdPM> getBirds() {
@@ -58,6 +81,22 @@ public class PresentationModel {
 
   public void setSelectedBird(BirdPM selectedBird) {
     this.selectedBird.setValue(selectedBird);
+  }
+
+  public void toggleConnectionType() {
+    if (connectionType.get() == ConnectionType.LOCAL) {
+      connectionType.set(ConnectionType.CLOUD);
+      birdService.set(birdServiceCloud);
+    } else {
+      connectionType.set(ConnectionType.LOCAL);
+      birdService.set(birdServiceLocal);
+    }
+
+    load();
+  }
+
+  public ObjectProperty<ConnectionType> getConnectionTypeProperty() {
+    return connectionType;
   }
 
   public ObjectProperty<BirdPM> selectedBirdProperty() {

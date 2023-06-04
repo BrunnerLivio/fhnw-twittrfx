@@ -1,13 +1,10 @@
 package twittrfx.toolbar;
 
-import java.util.List;
-import java.util.stream.Stream;
-
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import twittrfx.ConnectionType;
 import twittrfx.PresentationModel;
 import twittrfx.ViewMixin;
 import twittrfx.i18n.I18nPM;
@@ -26,6 +23,7 @@ public class Toolbar extends HBox implements ViewMixin {
   private Button saveButton;
   private Button deleteButton;
   private Button addButton;
+  private Button cloudButton;
   private Button darkModeButton;
   private Button englishButton;
   private Button germanButton;
@@ -50,6 +48,7 @@ public class Toolbar extends HBox implements ViewMixin {
     addButton = new Button();
     darkModeButton = new Button();
     deleteButton = new Button();
+    cloudButton = new Button();
 
     englishButton = new Button();
     germanButton = new Button();
@@ -81,9 +80,8 @@ public class Toolbar extends HBox implements ViewMixin {
     setPadding(new Insets(10));
     setId("toolbar");
 
-
     HBox leftBox = new HBox();
-    leftBox.getChildren().addAll(saveButton, addButton, deleteButton);
+    leftBox.getChildren().addAll(saveButton, addButton, deleteButton, cloudButton);
     leftBox.setSpacing(10);
 
     HBox rightBox = new HBox();
@@ -100,6 +98,7 @@ public class Toolbar extends HBox implements ViewMixin {
     saveButton.setOnAction(event -> model.save());
     addButton.setOnAction(event -> model.addBird());
     deleteButton.setOnAction(event -> model.removeBird(model.getSelectedBird()));
+    cloudButton.setOnAction(event -> model.toggleConnectionType());
 
     englishButton.setOnAction(event -> i18n.setLanguage(Language.EN));
     germanButton.setOnAction(event -> i18n.setLanguage(Language.DE));
@@ -109,6 +108,9 @@ public class Toolbar extends HBox implements ViewMixin {
   @Override
   public void setupBindings() {
     deleteButton.disableProperty().bind(model.selectedBirdProperty().isNull());
+
+    cloudButton.textProperty().bind(model.getConnectionTypeProperty().asString());
+
     darkModeButton.graphicProperty()
         .bind(model.darkModeProperty().map(darkMode -> darkMode ? new LightModeIcon() : new DarkModeIcon()));
   }

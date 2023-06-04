@@ -1,5 +1,9 @@
 package twittrfx.bird;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.Nulls;
+
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleFloatProperty;
@@ -42,6 +46,44 @@ public class BirdPM {
     setPopulationTrend("");
     setPopulationStatus("");
     setIncubationPeriod("");
+  }
+
+  @JsonCreator
+  public BirdPM(
+      @JsonProperty("name") String name,
+      @JsonProperty("image") String image,
+      @JsonProperty("shortDescription") String shortDescription,
+      @JsonProperty("population_size") String populationSize,
+      @JsonProperty("maximumLifeSpanInYears") Float maximumLifeSpanInYears,
+      @JsonProperty("topSpeedInKmh") Integer topSpeedInKmh,
+      @JsonProperty("weight") String weight,
+      @JsonProperty("length") String length,
+      @JsonProperty("wingspan") String wingspan,
+      @JsonProperty("continents") String continents,
+      @JsonProperty("diet") String diet,
+      @JsonProperty("seasonalBehavior") String seasonalBehavior,
+      @JsonProperty("independentAge") String independentAge,
+      @JsonProperty("populationTrend") String populationTrend,
+      @JsonProperty("populationStatus") String populationStatus,
+      @JsonProperty("incubationPeriod") String incubationPeriod
+
+  ) {
+    setName(name);
+    setImage(image);
+    setShortDescription(shortDescription);
+    setPopulationSize(populationSize);
+    setMaximumLifeSpanInYears(maximumLifeSpanInYears);
+    setTopSpeedInKmh(topSpeedInKmh);
+    setWeight(weight);
+    setLength(length);
+    setWingspan(wingspan);
+    setContinents(continents);
+    setDiet(diet);
+    setSeasonalBehavior(seasonalBehavior);
+    setIndependentAge(independentAge);
+    setPopulationTrend(populationTrend);
+    setPopulationStatus(populationStatus);
+    setIncubationPeriod(incubationPeriod);
   }
 
   public BirdPM(String[] line) {
