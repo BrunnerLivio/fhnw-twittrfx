@@ -26,6 +26,8 @@
   -toolbar-bg-color: -primary;
   -surface-bg-color: #f5f5f5;
   -border-color: #ccc;
+  -overlay-color: rgba(255, 255, 255, 0.5);
+  -split-pane-color: -surface-bg-color;
 }
 
 .theme-dark {
@@ -35,6 +37,8 @@
   -surface-bg-color: rgb(31, 30, 37);
   -primary: rgb(102, 143, 249);
   -border-color: rgb(24, 24, 31);
+  -overlay-color: rgba(0, 0, 0, 0.5);
+  -split-pane-color: -surface-bg-color;
 }
 
 .split-pane {
@@ -129,6 +133,10 @@
   -fx-fill: transparent;
 }
 
+.table-view .scroll-bar .thumb {
+  -fx-background-color: -primary;
+}
+
 .icon-button {
   -fx-background-color: transparent;
   -fx-opacity: 0.8;
@@ -137,4 +145,19 @@
 .icon-button:hover {
   -fx-cursor: hand;
   -fx-opacity: 1;
+}
+
+.text-input {
+  -fx-background-color: -overlay-color;
+  -fx-background-radius: 7px;
+  -fx-border-radius: 7px;
+  -fx-border-color: -border-color;
+  -fx-border-width: 1px;
+  -fx-padding: 5px;
+  -fx-font-size: 14;
+  -fx-text-fill: -fg-color;
+}
+
+.split-pane > .split-pane-divider {
+  -fx-background-color: -split-pane-color;
 }
