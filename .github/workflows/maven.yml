@@ -27,3 +27,10 @@ jobs:
         with:
           name: Package
           path: staging
+      - name: Build and Publish Docker image
+        uses: VaultVulp/gp-docker-action@1.6.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          image-name: twittrfx-server
+          image-tag: latest
+          build-context: ./src/server
