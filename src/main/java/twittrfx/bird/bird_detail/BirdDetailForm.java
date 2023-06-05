@@ -130,6 +130,10 @@ public class BirdDetailForm extends GridPane implements ViewMixin {
 
   @Override
   public void setupBindings() {
+    if (model.selectedBirdProperty().get() == null) {
+      return;
+    }
+
     name.textProperty().bindBidirectional(model.selectedBirdProperty().get().nameProperty());
     shortDescription.textProperty().bindBidirectional(model.selectedBirdProperty().get().shortDescriptionProperty());
     nameLabel.textProperty().bind(i18n.get(Caption.NAME));

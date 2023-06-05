@@ -37,11 +37,14 @@ public class BirdDetailHeader extends HBox implements ViewMixin {
 
   @Override
   public void setupBindings() {
+    if (model.selectedBirdProperty().get() == null) {
+      return;
+    }
+
     title.textProperty().bind(model.selectedBirdProperty().get().nameProperty());
     continents.textProperty().bind(model.selectedBirdProperty().get().continentsProperty());
     imageView.imageProperty()
         .bind(Bindings.createObjectBinding(() -> updateImage(), model.selectedBirdProperty().get().imageProperty()));
-    // updateImage(model.selectedBirdProperty().get().imageProperty().get());
   }
 
   public void unbind() {
