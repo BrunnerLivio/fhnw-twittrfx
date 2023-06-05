@@ -127,6 +127,7 @@ fabric.properties
 ### Eclipse template
 .metadata
 bin/
+!src/server/bin
 tmp/
 *.tmp
 *.bak

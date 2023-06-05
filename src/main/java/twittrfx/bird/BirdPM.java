@@ -2,7 +2,6 @@ package twittrfx.bird;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.Nulls;
 
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
