@@ -35,3 +35,4 @@ jobs:
           image-name: twittrfx-server
           image-tag: latest
           build-context: ./src/server
+          custom-args: --platform=linux/amd64,linux/arm64,linux/arm/v7
