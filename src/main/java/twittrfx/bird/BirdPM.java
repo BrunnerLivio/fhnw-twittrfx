@@ -53,7 +53,7 @@ public class BirdPM {
       @JsonProperty("name") String name,
       @JsonProperty("image") String image,
       @JsonProperty("shortDescription") String shortDescription,
-      @JsonProperty("population_size") String populationSize,
+      @JsonProperty("populationSize") String populationSize,
       @JsonProperty("maximumLifeSpanInYears") Float maximumLifeSpanInYears,
       @JsonProperty("topSpeedInKmh") Integer topSpeedInKmh,
       @JsonProperty("weight") String weight,
@@ -66,7 +66,6 @@ public class BirdPM {
       @JsonProperty("populationTrend") String populationTrend,
       @JsonProperty("populationStatus") String populationStatus,
       @JsonProperty("incubationPeriod") String incubationPeriod
-
   ) {
     setName(name);
     setImage(image);

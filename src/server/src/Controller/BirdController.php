@@ -8,7 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BirdController extends AbstractController
@@ -28,21 +27,6 @@ class BirdController extends AbstractController
     return new JsonResponse($birds);
   }
 
-  #[Route('/bird/{id}', methods: ['GET'])]
-  public function getOne(int $id): Response
-  {
-    $this->logger->info('Getting bird with id ' . $id);
-
-    $bird = $this->birdService->getOne($id);
-
-    if (!$bird) {
-      return new JsonResponse([
-        'error' => 'Bird not found'
-      ], 404);
-    }
-
-    return new JsonResponse($bird);
-  }
 
   #[Route('/bird', methods: ['POST'])]
   public function saveAll(

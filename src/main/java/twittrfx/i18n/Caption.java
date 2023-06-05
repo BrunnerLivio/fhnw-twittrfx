@@ -21,8 +21,11 @@ public enum Caption {
   DIET("Diet", "Diät", "Diät"),
   SEASONAL_BEHAVIOR("Seasonal Behavior", "Saisonales Verhalten", "Saisonales Verhalten"),
   INDEPENDENT_AGE("Independent Age", "Unabhängiges Alter", "Unabhängiges Alter"),
-  IMAGE("Image", "Bild", "Bild");
-
+  IMAGE("Image", "Bild", "Bild"),
+  CONNECTION_ERROR("The data source is unavailable", "Die Datenquelle ist nicht verfügbar",
+      "Die Quelle bring kein Wasser arr"),
+  NO_BIRD_SELECTED("No bird selected", "Kein Vogel ausgewählt", "Kein Papagei in Sicht");
+  ;
 
   private final String english;
   private final String german;

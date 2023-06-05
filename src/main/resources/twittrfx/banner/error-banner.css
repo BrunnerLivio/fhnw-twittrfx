@@ -1,0 +1,10 @@
+.error-banner {
+  -fx-background-color: -error-bg-color;
+  -fx-padding: 8px;
+  -fx-spacing: 16px;
+}
+
+.error-banner > * {
+  -fx-fill: -error-fg-color;
+  -fx-width: 100%;
+}

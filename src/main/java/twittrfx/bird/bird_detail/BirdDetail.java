@@ -10,6 +10,8 @@ public class BirdDetail extends VBox implements ViewMixin {
   private final I18nPM i18n;
   private BirdDetailHeader header;
   private BirdDetailForm form;
+  private VBox detail;
+  private BirdDetailEmpty empty;
 
   public BirdDetail(BirdViewPM model, I18nPM i18n) {
     this.model = model;
@@ -27,10 +29,18 @@ public class BirdDetail extends VBox implements ViewMixin {
   public void initializeControls() {
     header = new BirdDetailHeader(model);
     form = new BirdDetailForm(model, i18n);
+    empty = new BirdDetailEmpty(i18n);
+    detail = new VBox();
+
+    detail.visibleProperty().bind(model.selectedBirdProperty().isNotNull());
+    detail.managedProperty().bind(detail.visibleProperty());
+    empty.visibleProperty().bind(model.selectedBirdProperty().isNull());
+    empty.managedProperty().bind(empty.visibleProperty());
   }
 
   @Override
   public void setupBindings() {
+
   }
 
   @Override
@@ -39,7 +49,8 @@ public class BirdDetail extends VBox implements ViewMixin {
 
   @Override
   public void layoutControls() {
-    getChildren().addAll(header, form);
+    detail.getChildren().addAll(header, form);
+    getChildren().addAll(detail, empty);
   }
 
 }

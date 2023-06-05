@@ -114,6 +114,10 @@ public class Toolbar extends HBox implements ViewMixin {
   public void setupBindings() {
     deleteButton.disableProperty().bind(model.selectedBirdProperty().isNull());
 
+    saveButton.disableProperty().bind(model.connectionStatusProperty().not());
+    addButton.disableProperty().bind(model.connectionStatusProperty().not());
+    deleteButton.disableProperty().bind(model.connectionStatusProperty().not());
+
     cloudButton.graphicProperty()
         .bind(model.getConnectionTypeProperty().map(connectionType -> connectionType == ConnectionType.CLOUD
             ? new CloudIcon()

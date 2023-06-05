@@ -13,13 +13,13 @@ import twittrfx.bird.BirdServiceCloud;
 import twittrfx.bird.BirdServiceLocal;
 
 public class PresentationModel {
-  private final BirdService birdServiceLocal = new BirdServiceLocal("birds_of_switzerland.tsv");
-  private final BirdService birdServiceCloud = new BirdServiceCloud();
-
-  private BirdService birdService = birdServiceLocal;
-
   private final ObjectProperty<ConnectionType> connectionType = new SimpleObjectProperty<>(
       ConnectionType.LOCAL);
+  private final SimpleBooleanProperty connectionStatus = new SimpleBooleanProperty(false);
+  private final BirdService birdServiceLocal = new BirdServiceLocal("birds_of_switzerland.tsv");
+  private final BirdService birdServiceCloud = new BirdServiceCloud("http://localhost:8000");
+
+  private BirdService birdService = birdServiceLocal;
 
   private ObjectProperty<BirdPM> selectedBird = new SimpleObjectProperty<>();
   private final BooleanProperty darkMode = new SimpleBooleanProperty(false);
@@ -36,19 +36,17 @@ public class PresentationModel {
 
     try {
       birds.addAll(this.birdService.load());
+      selectedBird.setValue(getBirds().get(0));
+      connectionStatus.set(true);
     } catch (Exception e) {
-      e.printStackTrace();
-      throw new IllegalStateException("load failed");
+      connectionStatus.set(false);
+      selectedBird.setValue(null);
     }
-    selectedBird.setValue(getBirds().get(0));
+
   }
 
   public void toggleDarkMode() {
     darkMode.set(!darkMode.get());
-  }
-
-  public boolean isDarkMode() {
-    return darkMode.getValue();
   }
 
   public void save() {
@@ -105,5 +103,9 @@ public class PresentationModel {
 
   public BooleanProperty darkModeProperty() {
     return darkMode;
+  }
+
+  public BooleanProperty connectionStatusProperty() {
+    return connectionStatus;
   }
 }
