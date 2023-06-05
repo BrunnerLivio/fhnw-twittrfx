@@ -1,0 +1,31 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    },
+    {
+      "type": "java",
+      "name": "AppStarter (Local Server)",
+      "request": "launch",
+      "mainClass": "twittrfx.AppStarter",
+      "projectName": "twittrfx"
+    },
+    {
+      "type": "java",
+      "name": "AppStarter (Remote Server)",
+      "request": "launch",
+      "mainClass": "twittrfx.AppStarter",
+      "projectName": "twittrfx",
+      "env": {
+        "API_BASE_URL": "https://6dd8-2a04-ee41-6-b101-919a-d136-7dde-342f.ngrok-free.app"
+      }
+    }
+  ]
+}

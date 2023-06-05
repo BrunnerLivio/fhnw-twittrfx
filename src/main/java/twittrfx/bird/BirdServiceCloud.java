@@ -18,8 +18,18 @@ public class BirdServiceCloud implements BirdService {
   HttpClient client = HttpClient.newHttpClient();
   ObjectMapper mapper = new ObjectMapper();
 
+  public BirdServiceCloud() {
+    this(System.getenv("API_BASE_URL"));
+  }
+
   public BirdServiceCloud(String baseUrl) {
-    this.birdUri = URI.create(baseUrl + "/bird");
+
+    if (baseUrl == null || baseUrl.isEmpty()) {
+      this.birdUri = URI.create("http://localhost:8000/bird");
+
+    } else {
+      this.birdUri = URI.create(baseUrl + "/bird");
+    }
   }
 
   public List<BirdPM> load() throws InterruptedException, JsonProcessingException, IOException {

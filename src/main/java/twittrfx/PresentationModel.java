@@ -17,7 +17,7 @@ public class PresentationModel {
       ConnectionType.LOCAL);
   private final SimpleBooleanProperty connectionStatus = new SimpleBooleanProperty(false);
   private final BirdService birdServiceLocal = new BirdServiceLocal("birds_of_switzerland.tsv");
-  private final BirdService birdServiceCloud = new BirdServiceCloud("http://localhost:8000");
+  private final BirdService birdServiceCloud = new BirdServiceCloud();
 
   private BirdService birdService = birdServiceLocal;
 
