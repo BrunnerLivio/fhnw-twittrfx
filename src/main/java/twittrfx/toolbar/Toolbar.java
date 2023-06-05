@@ -10,11 +10,13 @@ import twittrfx.ViewMixin;
 import twittrfx.i18n.I18nPM;
 import twittrfx.i18n.Language;
 import twittrfx.icons.AddIcon;
+import twittrfx.icons.CloudIcon;
 import twittrfx.icons.DarkModeIcon;
 import twittrfx.icons.DeleteIcon;
 import twittrfx.icons.EnglishIcon;
 import twittrfx.icons.GermanIcon;
 import twittrfx.icons.LightModeIcon;
+import twittrfx.icons.LocalIcon;
 import twittrfx.icons.PirateIcon;
 import twittrfx.icons.SaveIcon;
 
@@ -77,6 +79,9 @@ public class Toolbar extends HBox implements ViewMixin {
     pirateButton.setGraphic(new PirateIcon());
     pirateButton.getStyleClass().add("icon-button");
 
+    cloudButton.setGraphic(new LocalIcon());
+    cloudButton.getStyleClass().add("icon-button");
+
     setPadding(new Insets(10));
     setId("toolbar");
 
@@ -109,7 +114,10 @@ public class Toolbar extends HBox implements ViewMixin {
   public void setupBindings() {
     deleteButton.disableProperty().bind(model.selectedBirdProperty().isNull());
 
-    cloudButton.textProperty().bind(model.getConnectionTypeProperty().asString());
+    cloudButton.graphicProperty()
+        .bind(model.getConnectionTypeProperty().map(connectionType -> connectionType == ConnectionType.CLOUD
+            ? new CloudIcon()
+            : new LocalIcon()));
 
     darkModeButton.graphicProperty()
         .bind(model.darkModeProperty().map(darkMode -> darkMode ? new LightModeIcon() : new DarkModeIcon()));
