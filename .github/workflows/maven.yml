@@ -35,4 +35,11 @@ jobs:
           image-name: twittrfx-server
           image-tag: latest
           build-context: ./src/server
-          custom-args: --platform=linux/amd64,linux/arm64,linux/arm/v7
+      - name: Build and Publish Docker image
+        uses: VaultVulp/gp-docker-action@1.6.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          image-name: twittrfx-server
+          image-tag: latest-arm
+          build-context: ./src/server
+          dockerfile: ./src/server/Dockerfile.arm
