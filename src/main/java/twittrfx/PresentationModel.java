@@ -16,7 +16,7 @@ public class PresentationModel {
   private final BirdService birdServiceLocal = new BirdServiceLocal("birds_of_switzerland.tsv");
   private final BirdService birdServiceCloud = new BirdServiceCloud();
 
-  private ObjectProperty<BirdService> birdService = new SimpleObjectProperty<>(birdServiceLocal);
+  private BirdService birdService = birdServiceLocal;
 
   private final ObjectProperty<ConnectionType> connectionType = new SimpleObjectProperty<>(
       ConnectionType.LOCAL);
@@ -35,7 +35,7 @@ public class PresentationModel {
     birds.clear();
 
     try {
-      birds.addAll(this.birdService.get().load());
+      birds.addAll(this.birdService.load());
     } catch (Exception e) {
       e.printStackTrace();
       throw new IllegalStateException("load failed");
@@ -53,7 +53,7 @@ public class PresentationModel {
 
   public void save() {
     try {
-      this.birdService.get().saveAll(birds.stream().toList());
+      this.birdService.saveAll(birds.stream().toList());
     } catch (Exception e) {
       e.printStackTrace();
       throw new IllegalStateException("save failed");
@@ -86,10 +86,10 @@ public class PresentationModel {
   public void toggleConnectionType() {
     if (connectionType.get() == ConnectionType.LOCAL) {
       connectionType.set(ConnectionType.CLOUD);
-      birdService.set(birdServiceCloud);
+      birdService = birdServiceCloud;
     } else {
       connectionType.set(ConnectionType.LOCAL);
-      birdService.set(birdServiceLocal);
+      birdService = birdServiceLocal;
     }
 
     load();
