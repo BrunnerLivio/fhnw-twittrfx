@@ -1,4 +1,4 @@
-name:  Maven
+name: Maven
 
 on:
   push:
@@ -6,8 +6,12 @@ on:
   pull_request:
     branches: [master]
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: brunnerlivio/twittrfx-server
+
 jobs:
-  build:
+  "mvn-package":
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -21,25 +25,45 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: mvn -B package --file pom.xml
-
       - run: mvn --batch-mode --update-snapshots verify
       - run: mkdir staging && cp target/*.jar staging
       - uses: actions/upload-artifact@v3
         with:
           name: Package
           path: staging
-      - name: Build and Publish Docker image
-        uses: VaultVulp/gp-docker-action@1.6.0
+
+  "release":
+    runs-on: ubuntu-latest
+    needs: ["mvn-package"]
+    permissions:
+      contents: write
+      packages: write
+      pages: write
+      id-token: write
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          image-name: twittrfx-server
-          image-tag: latest
-          build-context: ./src/server
-      - name: Build and Publish Docker image
-        uses: VaultVulp/gp-docker-action@1.6.0
+          node-version: 18.x
+
+      - name: Install Dependencies
+        run: |
+          npm install -g semantic-release @semantic-release/release-notes-generator @semantic-release/commit-analyzer @semantic-release-plus/docker @semantic-release/github @semantic-release/git @google/semantic-release-replace-plugin
+      - uses: actions/download-artifact@master
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          image-name: twittrfx-server
-          image-tag: latest-arm
-          build-context: ./src/server
-          dockerfile: ./src/server/Dockerfile.arm
+          name: Package
+
+      - run: docker build --tag ${{ env.IMAGE_NAME }} src/server/
+     
+      - name: Semantic Release
+        run: semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          DOCKER_USERNAME: ${{ github.actor }}
+          DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
