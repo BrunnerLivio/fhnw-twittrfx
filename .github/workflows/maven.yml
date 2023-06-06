@@ -23,6 +23,19 @@ jobs:
           java-version: "19"
           distribution: "temurin"
           cache: maven
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18.x
+
+      - name: Install Dependencies
+        run: |
+          npm install -g semantic-release @semantic-release/release-notes-generator @semantic-release/commit-analyzer @semantic-release-plus/docker @semantic-release/github @semantic-release/git @semantic-release/exec
+      - name: Replace version in pom.xml
+        run: |
+           DRY_RUN=true semantic-release --dry-run --no-ci
+           mvn versions:set -DnewVersion=$(cat .VERSION)
+
       - name: Build with Maven
         run: mvn -B package --file pom.xml
       - run: mvn --batch-mode --update-snapshots verify
@@ -53,7 +66,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm install -g semantic-release @semantic-release/release-notes-generator @semantic-release/commit-analyzer @semantic-release-plus/docker @semantic-release/github @semantic-release/git @google/semantic-release-replace-plugin
+          npm install -g semantic-release @semantic-release/release-notes-generator @semantic-release/commit-analyzer @semantic-release-plus/docker @semantic-release/github @semantic-release/git @semantic-release/exec
       - uses: actions/download-artifact@master
         with:
           name: Package
