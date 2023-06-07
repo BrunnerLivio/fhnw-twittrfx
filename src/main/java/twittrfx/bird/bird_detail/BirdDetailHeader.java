@@ -79,6 +79,9 @@ public class BirdDetailHeader extends HBox implements ViewMixin {
   public void layoutControls() {
     title.getStyleClass().add("title");
     imageView.getStyleClass().add("bird-image");
+
+    // Does not exist as CSS properties :(
+    // https://github.com/javafxports/openjdk-jfx/pull/30
     imageView.setFitHeight(200);
     imageView.setPreserveRatio(true);
 

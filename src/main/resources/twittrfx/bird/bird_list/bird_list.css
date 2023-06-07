@@ -1,4 +1,8 @@
-#bird-list-title {
+.bird-list-title {
   -fx-max-width: 50;
   -fx-padding: 8 0 24 0;
+}
+
+.bird-list {
+  -fx-padding: 10;
 }

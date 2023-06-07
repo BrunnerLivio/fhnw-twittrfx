@@ -52,7 +52,7 @@ public class BirdListHeader extends GridPane implements ViewMixin {
     rc.setVgrow(Priority.ALWAYS);
     getRowConstraints().addAll(rc, rc, rc);
 
-    setId("bird-list-title");
+    getStyleClass().add("bird-list-title");
     add(title, 0, 0, 2, 1);
     add(amountOfBirdsLabel, 0, 1);
     add(amountOfBirds, 1, 1);

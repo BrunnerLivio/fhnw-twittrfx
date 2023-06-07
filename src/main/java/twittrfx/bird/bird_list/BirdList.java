@@ -1,7 +1,6 @@
 package twittrfx.bird.bird_list;
 
 import javafx.collections.ListChangeListener;
-import javafx.geometry.Insets;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Priority;
@@ -56,7 +55,7 @@ public class BirdList extends VBox implements ViewMixin {
 
   @Override
   public void layoutControls() {
-    setPadding(new Insets(10));
+    getStyleClass().add("bird-list");
     setVgrow(table, Priority.ALWAYS);
 
     getChildren().addAll(birdListTitle, table);

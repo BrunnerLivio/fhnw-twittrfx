@@ -1,4 +1,5 @@
 #toolbar {
   -fx-background-color: -toolbar-bg-color;
   -fx-spacing: 10;
+  -fx-padding: 10;
 }

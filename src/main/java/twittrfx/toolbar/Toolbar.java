@@ -1,6 +1,5 @@
 package twittrfx.toolbar;
 
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -82,7 +81,6 @@ public class Toolbar extends HBox implements ViewMixin {
     cloudButton.setGraphic(new LocalIcon());
     cloudButton.getStyleClass().add("icon-button");
 
-    setPadding(new Insets(10));
     setId("toolbar");
 
     HBox leftBox = new HBox();
