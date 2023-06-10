@@ -8,6 +8,7 @@ Project submission by Livio Brunner
 
 ```bash
 # Build the project
+mvn install
 mvn package
 
 # Run the project and use local server
@@ -20,7 +21,19 @@ API_BASE_URL=https://5af4-2a04-ee41-6-b101-919a-d136-7dde-342f.ngrok-free.app ja
 
 ### Server (PHP Symfony)
 
-1. Local:
+1. Local
+
+```bash
+cd src/server
+composer install
+symfony server:start
+```
+
+2. Docker
+
+```bash
+docker run -p "8000:8000" ghcr.io/brunnerlivio/twittrfx-server:latest
+```
 
 
 ## Umgesetzte Zusatz-Features
