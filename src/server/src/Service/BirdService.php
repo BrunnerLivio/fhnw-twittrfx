@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\Dto\BirdDto;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 
 class BirdService
 {

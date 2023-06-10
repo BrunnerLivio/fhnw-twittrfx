@@ -3,6 +3,7 @@ package twittrfx.toolbar;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import twittrfx.ConnectionStatus;
 import twittrfx.ConnectionType;
 import twittrfx.PresentationModel;
 import twittrfx.ViewMixin;
@@ -112,12 +113,12 @@ public class Toolbar extends HBox implements ViewMixin {
   public void setupBindings() {
     deleteButton.disableProperty().bind(model.selectedBirdProperty().isNull());
 
-    saveButton.disableProperty().bind(model.connectionStatusProperty().not());
-    addButton.disableProperty().bind(model.connectionStatusProperty().not());
-    deleteButton.disableProperty().bind(model.connectionStatusProperty().not());
+    saveButton.disableProperty().bind(model.connectionStatusProperty().isEqualTo(ConnectionStatus.DISCONNECTED));
+    addButton.disableProperty().bind(model.connectionStatusProperty().isEqualTo(ConnectionStatus.DISCONNECTED));
+    deleteButton.disableProperty().bind(model.connectionStatusProperty().isEqualTo(ConnectionStatus.DISCONNECTED));
 
     cloudButton.graphicProperty()
-        .bind(model.getConnectionTypeProperty().map(connectionType -> connectionType == ConnectionType.CLOUD
+        .bind(model.getConnectionTypeProperty().map(connectionType -> connectionType == ConnectionType.REMOTE
             ? new CloudIcon()
             : new LocalIcon()));
 

@@ -42,7 +42,7 @@ public class ApplicationUI extends VBox implements ViewMixin {
 
   @Override
   public void setupBindings() {
-    errorBanner.visibleProperty().bind(model.connectionStatusProperty().not());
+    errorBanner.visibleProperty().bind(model.connectionStatusProperty().isEqualTo(ConnectionStatus.DISCONNECTED));
     errorBanner.textProperty().bind(i18n.get(Caption.CONNECTION_ERROR));
   }
 

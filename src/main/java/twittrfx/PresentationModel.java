@@ -9,15 +9,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import twittrfx.bird.BirdPM;
 import twittrfx.bird.BirdService;
-import twittrfx.bird.BirdServiceCloud;
+import twittrfx.bird.BirdServiceRemote;
 import twittrfx.bird.BirdServiceLocal;
 
 public class PresentationModel {
   private final ObjectProperty<ConnectionType> connectionType = new SimpleObjectProperty<>(
       ConnectionType.LOCAL);
-  private final SimpleBooleanProperty connectionStatus = new SimpleBooleanProperty(false);
+  private final ObjectProperty<ConnectionStatus> connectionStatus = new SimpleObjectProperty<>(
+      ConnectionStatus.CONNECTED);
   private final BirdService birdServiceLocal = new BirdServiceLocal("birds_of_switzerland.tsv");
-  private final BirdService birdServiceCloud = new BirdServiceCloud();
+  private final BirdService birdServiceRemote = new BirdServiceRemote();
 
   private BirdService birdService = birdServiceLocal;
 
@@ -37,12 +38,11 @@ public class PresentationModel {
     try {
       birds.addAll(this.birdService.load());
       selectedBird.setValue(getBirds().get(0));
-      connectionStatus.set(true);
+      connectionStatus.set(ConnectionStatus.CONNECTED);
     } catch (Exception e) {
-      connectionStatus.set(false);
+      connectionStatus.set(ConnectionStatus.DISCONNECTED);
       selectedBird.setValue(null);
     }
-
   }
 
   public void toggleDarkMode() {
@@ -83,8 +83,8 @@ public class PresentationModel {
 
   public void toggleConnectionType() {
     if (connectionType.get() == ConnectionType.LOCAL) {
-      connectionType.set(ConnectionType.CLOUD);
-      birdService = birdServiceCloud;
+      connectionType.set(ConnectionType.REMOTE);
+      birdService = birdServiceRemote;
     } else {
       connectionType.set(ConnectionType.LOCAL);
       birdService = birdServiceLocal;
@@ -105,7 +105,7 @@ public class PresentationModel {
     return darkMode;
   }
 
-  public BooleanProperty connectionStatusProperty() {
+  public ObjectProperty<ConnectionStatus> connectionStatusProperty() {
     return connectionStatus;
   }
 }

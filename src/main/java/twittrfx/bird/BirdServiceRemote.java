@@ -13,16 +13,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class BirdServiceCloud implements BirdService {
+public class BirdServiceRemote implements BirdService {
   private URI birdUri;
   HttpClient client = HttpClient.newHttpClient();
   ObjectMapper mapper = new ObjectMapper();
 
-  public BirdServiceCloud() {
+  public BirdServiceRemote() {
     this(System.getenv("API_BASE_URL"));
   }
 
-  public BirdServiceCloud(String baseUrl) {
+  public BirdServiceRemote(String baseUrl) {
 
     if (baseUrl == null || baseUrl.isEmpty()) {
       this.birdUri = URI.create("http://localhost:8000/bird");
