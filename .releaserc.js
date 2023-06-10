@@ -23,7 +23,7 @@ const plugins = [
         {
           assets: [
             {
-              path: "**/*.jar",
+              path: "**/*jar-with-dependencies.jar",
               label: "TwittrFX Jar",
             },
           ],
