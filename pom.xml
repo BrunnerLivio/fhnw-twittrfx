@@ -46,18 +46,6 @@
 
     <build>
         <plugins>
-          <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-jar-plugin</artifactId>
-              <version>3.1.0</version>
-              <configuration>
-                <archive>
-                  <manifest>
-                    <mainClass>twittrfx.AppStarter</mainClass>
-                  </manifest>
-                </archive>
-              </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -77,7 +65,7 @@
                 <archive>
                     <manifest>
                         <addClasspath>true</addClasspath>
-                        <mainClass>AppStarter</mainClass>
+                        <mainClass>twittrfx.AppStarter</mainClass>
                     </manifest>
                 </archive>
                 <descriptorRefs>
