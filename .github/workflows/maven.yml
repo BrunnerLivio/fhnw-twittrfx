@@ -14,7 +14,13 @@ jobs:
   "mvn-package":
     runs-on: ubuntu-latest
     permissions:
+      contents: write
       packages: write
+      pages: write
+      id-token: write
+      issues: write
+      pull-requests: write
+
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 19
@@ -33,8 +39,8 @@ jobs:
           npm install -g semantic-release @semantic-release/release-notes-generator @semantic-release/commit-analyzer @semantic-release-plus/docker @semantic-release/github @semantic-release/git @semantic-release/exec
       - name: Replace version in pom.xml
         run: |
-           DRY_RUN=true semantic-release --dry-run --no-ci
-           mvn versions:set -DnewVersion=$(cat .VERSION)
+          DRY_RUN=true semantic-release --dry-run --no-ci
+          mvn versions:set -DnewVersion=$(cat .VERSION)
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
@@ -72,7 +78,7 @@ jobs:
           name: Package
 
       - run: docker build --tag ${{ env.IMAGE_NAME }} src/server/
-     
+
       - name: Semantic Release
         run: semantic-release
         env:

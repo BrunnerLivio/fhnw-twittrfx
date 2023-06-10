@@ -7,12 +7,6 @@ const plugins = [
       verifyReleaseCmd: "echo ${nextRelease.version} > .VERSION",
     },
   ],
-  [
-    "@semantic-release/git",
-    {
-      assets: ["pom.xml"],
-    },
-  ],
   process.env.DRY_RUN === "true"
     ? null
     : [
@@ -22,17 +16,19 @@ const plugins = [
           registry: process.env.REGISTRY || "ghcr.io",
         },
       ],
-  [
-    "@semantic-release/github",
-    {
-      assets: [
+  process.env.DRY_RUN === "true"
+    ? null
+    : [
+        "@semantic-release/github",
         {
-          path: "**/*.jar",
-          label: "TwittrFX Jar",
+          assets: [
+            {
+              path: "**/*.jar",
+              label: "TwittrFX Jar",
+            },
+          ],
         },
       ],
-    },
-  ],
 ].filter(Boolean);
 
 module.exports = {
