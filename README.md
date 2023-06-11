@@ -40,7 +40,10 @@ docker run -p "8000:8000" ghcr.io/brunnerlivio/twittrfx-server:latest
 
 Folgende Zusatzfeatures mit der angegebenen Bewertung wurden umgesetzt:
 
-* Dark/Light Mode
+* konsequenter Einsatz des PresentationModel-Konzepts
+* einfaches Styling der gesamten Applikation via CSS
+* Mehrsprachigkeit
+* Dark/Light Mode +(0.2)
 * Client/Server kommunikation (Birds via PHP REST API)
 * _CI/CD mit Github Actions. [Siehe mein öffentliches Repo für ein Live-Example](https://github.com/BrunnerLivio/fhnw-twittrfx)_
 
