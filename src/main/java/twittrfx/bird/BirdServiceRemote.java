@@ -18,15 +18,9 @@ public class BirdServiceRemote implements BirdService {
   HttpClient client = HttpClient.newHttpClient();
   ObjectMapper mapper = new ObjectMapper();
 
-  public BirdServiceRemote() {
-    this(System.getenv("API_BASE_URL"));
-  }
-
   public BirdServiceRemote(String baseUrl) {
-
     if (baseUrl == null || baseUrl.isEmpty()) {
       this.birdUri = URI.create("http://localhost:8000/bird");
-
     } else {
       this.birdUri = URI.create(baseUrl + "/bird");
     }

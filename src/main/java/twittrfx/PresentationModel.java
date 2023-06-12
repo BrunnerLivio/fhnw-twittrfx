@@ -18,7 +18,7 @@ public class PresentationModel {
   private final ObjectProperty<ConnectionStatus> connectionStatus = new SimpleObjectProperty<>(
       ConnectionStatus.CONNECTED);
   private final BirdService birdServiceLocal = new BirdServiceLocal("birds_of_switzerland.tsv");
-  private final BirdService birdServiceRemote = new BirdServiceRemote();
+  private final BirdService birdServiceRemote = new BirdServiceRemote(System.getenv("API_BASE_URL"));
 
   private BirdService birdService = birdServiceLocal;
 
