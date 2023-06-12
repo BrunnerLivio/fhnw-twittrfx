@@ -1,6 +1,5 @@
 package twittrfx.bird.bird_list;
 
-
 import javafx.beans.binding.Bindings;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -32,7 +31,7 @@ public class BirdListHeader extends GridPane implements ViewMixin {
   public void initializeControls() {
     title = new Text();
     amountOfBirdsLabel = new Text();
-    amountOfBirds = new Text(Integer.toString(model.getBirds().size()));
+    amountOfBirds = new Text();
 
     highestTopSpeedLabel = new Text();
     highestTopSpeed = new Text();
@@ -60,10 +59,11 @@ public class BirdListHeader extends GridPane implements ViewMixin {
   @Override
   public void setupBindings() {
     title.textProperty().bind(i18n.get(Caption.BIRDS_OF_SWITZERLAND));
+
     amountOfBirdsLabel.textProperty().bind(Bindings.concat(i18n.get(Caption.AMOUNT_OF_BIRDS), ":"));
-    highestTopSpeedLabel.textProperty().bind(Bindings.concat(i18n.get(Caption.HIGHEST_TOP_SPEED), ":"));
-    highestTopSpeed.textProperty().bind(Bindings.concat(model.highestTopSpeed(), " km/h"));
     amountOfBirds.textProperty().bind(Bindings.size(model.getBirds()).asString());
+
+    highestTopSpeedLabel.textProperty().bind(Bindings.concat(i18n.get(Caption.HIGHEST_TOP_SPEED), ":"));
     highestTopSpeed.textProperty().bind(
         Bindings.createIntegerBinding(() -> model.highestTopSpeed(), model.getBirds()).asString().concat(" km/h"));
   }
