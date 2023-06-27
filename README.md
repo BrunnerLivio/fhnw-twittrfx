@@ -63,3 +63,12 @@ ein Github release und attache diese Datei. Semantic Release generiert
 automatisch die versions nummer sowie mein changelog.
 
 [Die Releases findet man hier](https://github.com/BrunnerLivio/fhnw-twittrfx/releases)
+
+### Build/ Push Base Image
+
+```bash
+cd src/server
+docker login https://ghcr.io
+docker buildx build --platform linux/amd64 -f Dockerfile.base -t ghcr.io/brunnerlivio/fhnw-twittrfx-base:latest .
+docker push ghcr.io/brunnerlivio/fhnw-twittrfx-base:latest
+```
