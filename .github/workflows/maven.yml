@@ -33,6 +33,14 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 18.x
+      - name: Cache node modules
+        uses: actions/cache@v2
+        id: cache-node-modules
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
 
       - name: Install Dependencies
         run: |
@@ -69,7 +77,14 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 18.x
-
+      - name: Cache node modules
+        uses: actions/cache@v2
+        id: cache-node-modules
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
       - name: Install Dependencies
         run: |
           npm install -g semantic-release @semantic-release/release-notes-generator @semantic-release/commit-analyzer @semantic-release-plus/docker @semantic-release/github @semantic-release/git @semantic-release/exec
