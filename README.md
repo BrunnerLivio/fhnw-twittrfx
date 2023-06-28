@@ -35,7 +35,6 @@ symfony server:start
 docker run -p "8000:8000" ghcr.io/brunnerlivio/twittrfx-server:latest
 ```
 
-
 ## Umgesetzte Zusatz-Features
 
 Folgende Zusatzfeatures mit der angegebenen Bewertung wurden umgesetzt:
