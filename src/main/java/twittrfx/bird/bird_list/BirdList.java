@@ -1,6 +1,7 @@
 package twittrfx.bird.bird_list;
 
 import javafx.collections.ListChangeListener;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Priority;
@@ -19,12 +20,13 @@ public class BirdList extends VBox implements ViewMixin {
   private TableColumn<BirdPM, String> nameColumn;
   private TableColumn<BirdPM, String> populationTrend;
   private TableColumn<BirdPM, String> populationStatus;
+  private Label label;
 
   public BirdList(BirdViewPM model, I18nPM i18n) {
     this.model = model;
     this.i18n = i18n;
     init();
-  }
+  } 
 
   @Override
   public void initializeSelf() {
@@ -44,11 +46,14 @@ public class BirdList extends VBox implements ViewMixin {
 
     tableView.getColumns().addAll(nameColumn, populationTrend, populationStatus);
 
+    tableView.setPlaceholder(label);
+
     return tableView;
   }
 
   @Override
   public void initializeControls() {
+    label = new Label();
     table = this.initializeTable();
     birdListTitle = new BirdListHeader(model, i18n);
   }
@@ -81,6 +86,7 @@ public class BirdList extends VBox implements ViewMixin {
   @Override
   public void setupBindings() {
     nameColumn.textProperty().bind(i18n.get(Caption.NAME));
+    label.textProperty().bind(i18n.get(Caption.NO_TABLE_ITEMS));
     populationTrend.textProperty().bind(i18n.get(Caption.POPULATION_TREND));
     populationStatus.textProperty().bind(i18n.get(Caption.POPULATION_STATUS));
   }

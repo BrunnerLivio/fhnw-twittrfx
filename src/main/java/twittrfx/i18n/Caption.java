@@ -24,7 +24,8 @@ public enum Caption {
   IMAGE("Image", "Bild", "Bild"),
   CONNECTION_ERROR("The data source is unavailable", "Die Datenquelle ist nicht verfügbar",
       "Die Quelle bring kein Wasser arr"),
-  NO_BIRD_SELECTED("No bird selected", "Kein Vogel ausgewählt", "Kein Papagei in Sicht");
+  NO_BIRD_SELECTED("No bird selected", "Kein Vogel ausgewählt", "Kein Papagei in Sicht"),
+  NO_TABLE_ITEMS("No table items", "Keine Tabellenelemente", "Keine Tabellenelemente");
   ;
 
   private final String english;
